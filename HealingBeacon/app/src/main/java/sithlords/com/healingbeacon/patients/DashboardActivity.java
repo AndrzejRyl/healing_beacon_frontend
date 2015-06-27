@@ -1,16 +1,19 @@
 package sithlords.com.healingbeacon.patients;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.InputStream;
 
+import sithlords.com.healingbeacon.PrescribedDrugsActivity;
 import sithlords.com.healingbeacon.R;
 import sithlords.com.healingbeacon.model.PatientCard;
 
@@ -49,6 +52,12 @@ public class DashboardActivity extends ActionBarActivity {
 
         // Set all textviews data
         setData();
+    }
+
+    public void drugs(View view) {
+        Intent i  = new Intent(this, PrescribedDrugsActivity.class);
+        i.putExtra(PatientsInRange.PATIENT, patientCard);
+        startActivity(i);
     }
 
     private void setData() {
