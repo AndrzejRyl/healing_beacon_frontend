@@ -10,7 +10,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import sithlords.com.healingbeacon.R;
-import sithlords.com.healingbeacon.model.PrescribedDrug;
 import sithlords.com.healingbeacon.model.Test;
 
 public class TestResultListAdapter extends ArrayAdapter<Test> {
@@ -23,7 +22,7 @@ public class TestResultListAdapter extends ArrayAdapter<Test> {
         final Test testResult = getItem(position);
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.prescribed_drug_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.test_result_item, parent, false);
         }
 
         final TextView testNameField = (TextView) convertView.findViewById(R.id.testType);
