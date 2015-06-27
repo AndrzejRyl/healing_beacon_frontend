@@ -30,11 +30,6 @@
         <activity
             android:name=".patients.PatientsInRange"
             android:label="@string/title_activity_patients_in_range" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".patients.DashboardActivity"
@@ -48,8 +43,16 @@
             android:name=".PrescribedDrugsActivity"
             android:label="@string/title_activity_prescribed_drugs" >
         </activity>
+        <activity android:name=".MedicalResearchActivity" >
+        </activity>
         <activity
-            android:name=".MedicalResearchActivity" >
+            android:name=".SplashScreen"
+            android:label="@string/title_activity_splash_screen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
