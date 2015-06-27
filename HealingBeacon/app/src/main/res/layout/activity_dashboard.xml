@@ -1,0 +1,252 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#F2F2F2"
+    android:weightSum="4"
+    android:keepScreenOn="true"
+    tools:context="sithlords.com.healingbeacon.patients.DashboardActivity">
+
+    <LinearLayout
+        android:id="@+id/dashboard_layout_top"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/dashboard_patient_pic"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5" />
+
+        <LinearLayout
+            android:id="@+id/dashboard_layout_top_right"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/dashboard_name"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="JAN"
+                android:gravity="center|bottom"
+                android:textSize="30dp" />
+
+            <TextView
+                android:id="@+id/dashboard_surname"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="KOWALSKI"
+                android:gravity="center|top"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dashboard_layout_personal_data"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/dashboard_data_info"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="PERSONAL DATA"
+            android:gravity="center_vertical|left"
+            android:textSize="25dp"
+            android:background="#fff"
+            android:textColor="#4560F2"
+            android:paddingLeft="20px"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/dashboard_data_first_row"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:background="#fff">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="age"
+                android:gravity="center|center_vertical"
+                android:textSize="15dp"
+                android:textColor="#333034" />
+
+            <TextView
+                android:id="@+id/dashboard_age"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="33"
+                android:gravity="center|center_vertical"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="weight"
+                android:gravity="center|center_vertical"
+                android:textSize="15dp"
+                android:textColor="#333034" />
+
+            <TextView
+                android:id="@+id/dashboard_weight"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:textSize="20dp"
+                android:text="100 kg"
+                android:gravity="center"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/dashboard_data_second_row"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="4"
+            android:background="#fff">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="height"
+                android:gravity="center|center_vertical"
+                android:textSize="15dp"
+                android:textColor="#333034" />
+
+            <TextView
+                android:id="@+id/dashboard_height"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="180 cm"
+                android:gravity="center|center_vertical"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="sex"
+                android:gravity="center|center_vertical"
+                android:textSize="15dp"
+                android:textColor="#333034" />
+
+            <TextView
+                android:id="@+id/dashboard_sex"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:text="male"
+                android:gravity="center|center_vertical"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dashboard_buttons_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:onClick="medicalResearch"
+                android:background="#ff6464"
+                android:textColor="#FFFFFF"
+                android:text="MEDICAL RESEARCH"
+                android:textSize="30dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:onClick="drugs"
+                android:background="#4560F2"
+                android:textColor="#FFFFFF"
+                android:text="DRUGS"
+                android:textSize="30dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:onClick="hospitalStay"
+                android:background="#4560F2"
+                android:textColor="#FFFFFF"
+                android:textSize="30dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="HOSPITAL STAY"
+                android:textStyle="bold" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:onClick="history"
+                android:textColor="#FFFFFF"
+                android:textSize="30dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="#ff6464"
+                android:text="HISTORY"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
