@@ -1,10 +1,12 @@
 package sithlords.com.healingbeacon.patients;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -109,5 +111,11 @@ public class DashboardActivity extends ActionBarActivity {
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
         }
+    }
+
+    public void history(View v) {
+        Intent i = new Intent(this, PatientTemperatureActivity.class);
+        i.putExtra(PatientsInRange.PATIENT, patientCard);
+        startActivity(i);
     }
 }
