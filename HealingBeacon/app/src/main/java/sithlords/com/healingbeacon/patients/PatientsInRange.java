@@ -172,6 +172,6 @@ public class PatientsInRange extends ActionBarActivity implements PatientCardRes
 
     @Override
     public void onPatientResponse(PatientCard patientCard) {
-        patients.put((int)patientCard.getPatient().getId(), patientCard.getPatient());
+        patients.put(patientCard.getPatient().getBeaconID(), patientCard.getPatient());
     }
 }

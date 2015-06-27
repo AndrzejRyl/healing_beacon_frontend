@@ -1,6 +1,8 @@
 package sithlords.com.healingbeacon.model;
 
-public class PrescribedDrug {
+import java.io.Serializable;
+
+public class PrescribedDrug implements Serializable {
     private String drugName;
     private Integer intervalHours;
     private Integer doseMilligrams;
@@ -28,4 +30,5 @@ public class PrescribedDrug {
     public void setDoseMilligrams(Integer doseMilligrams) {
         this.doseMilligrams = doseMilligrams;
     }
+
 }

@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 public class Patient implements Serializable {
     private long id;
+    private int beaconID;
     private String firstName;
     private String lastName;
     private String photoUrl;
@@ -17,18 +18,6 @@ public class Patient implements Serializable {
 
     public Patient(){
 
-    }
-
-    public Patient(long id, String firstName, String lastName, String photoUrl,
-                   String dateOfBirth, String gender, Double weight, Double height) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.photoUrl = photoUrl;
-        this.dateOfBirth = dateOfBirth;
-        this.gender = gender;
-        this.weight = weight;
-        this.height = height;
     }
 
     public long getId() {
@@ -93,5 +82,13 @@ public class Patient implements Serializable {
 
     public Double getHeight() {
         return height;
+    }
+
+    public int getBeaconID() {
+        return beaconID;
+    }
+
+    public void setBeaconID(int beaconID) {
+        this.beaconID = beaconID;
     }
 }
