@@ -6,6 +6,6 @@ public interface ExternalService {
      *
      * @param beaconID ID of the beacon connected to the patient
      */
-    void getPatient(long beaconID);
+    void getPatientCard(long beaconID);
 
 }

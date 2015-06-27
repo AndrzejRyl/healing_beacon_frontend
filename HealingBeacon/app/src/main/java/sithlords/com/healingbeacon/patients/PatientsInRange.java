@@ -30,6 +30,7 @@ import static com.google.common.collect.Sets.newHashSet;
 
 public class PatientsInRange extends ActionBarActivity {
     private static final int REQUEST_CODE_ENABLE_BLUETOOTH = 1;
+    public static final String PATIENT = "Patient ID";
 
     private BeaconManager beaconManager;
     private Map<Integer, BeaconDevice> ourBeacons;
@@ -49,12 +50,12 @@ public class PatientsInRange extends ActionBarActivity {
         // !! OMG !! This is hackaton so I hardcode this list. !! OMG !!
         beaconIDs = newArrayList(1, 2, 3, 4, 5, 6);
         patients = newArrayList(
-                new Patient(1, "Jon", "Snow", 1),
-                new Patient(2, "Cersei", "Lannister", 1),
-                new Patient(3, "Tyrion", "Lannister", 3),
-                new Patient(4, "Sansa", "Stark", 4),
-                new Patient(5, "Hodor", "Hodor", 5),
-                new Patient(6, "Margaery", "Tyrell", 6));
+                new Patient(1, "Jon", "Snow"),
+                new Patient(2, "Cersei", "Lannister"),
+                new Patient(3, "Tyrion", "Lannister"),
+                new Patient(4, "Sansa", "Stark"),
+                new Patient(5, "Hodor", "Hodor"),
+                new Patient(6, "Margaery", "Tyrell"));
 
         // Find list view displaying patients in range
         listView = (ListView) findViewById(R.id.patients_list);
@@ -88,6 +89,7 @@ public class PatientsInRange extends ActionBarActivity {
                         // Update adapter (our list of patients in range)
                         adapter.clear();
                         for (BeaconDevice beacon : ourBeacons.values()) {
+                            // TODO: patients from API !!!!
                             adapter.add(patients.get(beacon.getMinor() - 1));
                         }
                         adapter.notifyDataSetChanged();

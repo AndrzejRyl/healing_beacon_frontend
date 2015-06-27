@@ -1,50 +1,43 @@
 package sithlords.com.healingbeacon.model;
 
+import java.io.Serializable;
+
 /**
  * @author FleenMobile at 2015-06-27
  */
-public class Patient {
-    private long ID;
-    private String firstName;
-    private String lastName;
-    private long beaconID;
+public class Patient implements Serializable{
+    private long id;
+    private String first_name;
+    private String last_name;
 
-    public Patient(long ID, String firstName, String lastName, long beaconID) {
-        this.ID = ID;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.beaconID = beaconID;
+    public Patient(long id, String first_name, String last_name) {
+        this.id = id;
+        this.first_name = first_name;
+        this.last_name = last_name;
     }
 
-    public long getID() {
-        return ID;
+    public long getId() {
+        return id;
     }
 
-    public void setID(long ID) {
-        this.ID = ID;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
-    public long getBeaconID() {
-        return beaconID;
-    }
-
-    public void setBeaconID(long beaconID) {
-        this.beaconID = beaconID;
-    }
 }

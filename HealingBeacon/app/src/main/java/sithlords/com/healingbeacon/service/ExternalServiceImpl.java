@@ -16,8 +16,8 @@ public class ExternalServiceImpl implements ExternalService {
     }
 
     @Override
-    public void getPatient(long beaconID) {
+    public void getPatientCard(long beaconID) {
 
-        new PatientRequestTask(listener).execute();
+        new PatientRequestTask(listener).execute(beaconID);
     }
 }

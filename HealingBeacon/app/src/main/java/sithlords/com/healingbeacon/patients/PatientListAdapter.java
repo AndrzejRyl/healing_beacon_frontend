@@ -2,6 +2,7 @@ package sithlords.com.healingbeacon.patients;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,16 @@ import java.util.List;
 
 import sithlords.com.healingbeacon.R;
 import sithlords.com.healingbeacon.model.Patient;
+import sithlords.com.healingbeacon.model.PatientCard;
+import sithlords.com.healingbeacon.rest.PatientResponseListener;
+import sithlords.com.healingbeacon.service.ExternalServiceImpl;
 
 import static com.google.common.collect.Lists.newArrayList;
 
 /**
  * @author FleenMobile at 2015-06-27
  */
-public class PatientListAdapter extends ArrayAdapter {
+public class PatientListAdapter extends ArrayAdapter implements PatientResponseListener {
 
     private List<Patient> data;
     private Context context;
@@ -56,8 +60,8 @@ public class PatientListAdapter extends ArrayAdapter {
         final Patient patient = data.get(position);
 
         // Set data
-        holder.patientName.setText(patient.getFirstName());
-        holder.patientSurname.setText(patient.getLastName());
+        holder.patientName.setText(patient.getFirst_name());
+        holder.patientSurname.setText(patient.getLast_name());
 
         // Allow user to click on whole row so as to open specific data about the patient
         final View finalRow = row;
@@ -65,7 +69,7 @@ public class PatientListAdapter extends ArrayAdapter {
 
             @Override
             public void onClick(View v) {
-                startPatientDashboard(patient.getID());
+                startPatientDashboard(patient.getId());
             }
         });
 
@@ -73,7 +77,17 @@ public class PatientListAdapter extends ArrayAdapter {
     }
 
     private void startPatientDashboard(long id) {
+        ExternalServiceImpl API = new ExternalServiceImpl(this);
 
+        // Subscribe for patient
+        API.getPatientCard(id);
+    }
+
+    @Override
+    public void onPatientResponse(PatientCard patientCard) {
+        Intent i  = new Intent(context, DashboardActivity.class);
+        i.putExtra(PatientsInRange.PATIENT, patientCard);
+        context.startActivity(i);
     }
 
     static class PatientHolder {

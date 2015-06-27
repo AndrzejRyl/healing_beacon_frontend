@@ -6,9 +6,9 @@ import android.util.Log;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import sithlords.com.healingbeacon.model.Patient;
+import sithlords.com.healingbeacon.model.PatientCard;
 
-public class PatientRequestTask extends AsyncTask<Long, Void, Patient> {
+public class PatientRequestTask extends AsyncTask<Long, Void, PatientCard> {
 
     private static final String ENDPOINT = "http://api.healing-beacon.cymerys.com:8080/api";
 
@@ -19,11 +19,11 @@ public class PatientRequestTask extends AsyncTask<Long, Void, Patient> {
     }
 
     @Override
-    protected Patient doInBackground(Long... params) {
+    protected PatientCard doInBackground(Long... params) {
         try {
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-            return restTemplate.getForObject(ENDPOINT + "/beacons/" + params[0] + "/patient_card", Patient.class);
+            return restTemplate.getForObject(ENDPOINT + "/beacons/" + params[0] + "/patient_card", PatientCard.class);
         } catch (Exception e) {
             Log.e("[PatientRequestTask]", e.getMessage(), e);
         }
@@ -31,7 +31,7 @@ public class PatientRequestTask extends AsyncTask<Long, Void, Patient> {
     }
 
     @Override
-    protected void onPostExecute(Patient patient) {
+    protected void onPostExecute(PatientCard patient) {
         listener.onPatientResponse(patient);
     }
 }
