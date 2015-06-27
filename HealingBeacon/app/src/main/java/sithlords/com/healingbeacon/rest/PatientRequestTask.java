@@ -10,7 +10,7 @@ import sithlords.com.healingbeacon.model.Patient;
 
 public class PatientRequestTask extends AsyncTask<Long, Void, Patient> {
 
-    private static final String ENDPOINT = "http://example.com/patient/";
+    private static final String ENDPOINT = "http://api.healing-beacon.cymerys.com:8080/api";
 
     private final PatientResponseListener listener;
 
@@ -23,7 +23,7 @@ public class PatientRequestTask extends AsyncTask<Long, Void, Patient> {
         try {
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-            return restTemplate.getForObject(ENDPOINT + params[0], Patient.class);
+            return restTemplate.getForObject(ENDPOINT + "/beacons/" + params[0] + "/patient_card", Patient.class);
         } catch (Exception e) {
             Log.e("[PatientRequestTask]", e.getMessage(), e);
         }
