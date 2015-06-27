@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import sithlords.com.healingbeacon.MedicalResearchActivity;
 import sithlords.com.healingbeacon.PrescribedDrugsActivity;
 import sithlords.com.healingbeacon.R;
 import sithlords.com.healingbeacon.model.Patient;
@@ -118,6 +119,12 @@ public class DashboardActivity extends ActionBarActivity {
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
         }
+    }
+
+    public void medicalResearch() {
+        final Intent intent = new Intent(this, MedicalResearchActivity.class);
+        intent.putExtra(PatientsInRange.PATIENT, patientCard);
+        startActivity(intent);
     }
 
     public void history(View v) {
