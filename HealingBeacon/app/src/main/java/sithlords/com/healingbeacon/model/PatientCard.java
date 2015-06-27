@@ -1,12 +1,17 @@
 package sithlords.com.healingbeacon.model;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.io.Serializable;
 import java.util.List;
+
+import sithlords.com.healingbeacon.rest.PatientCardJsonDeserializer;
 
 /**
  * @author FleenMobile at 2015-06-27
  */
+@JsonDeserialize(using = PatientCardJsonDeserializer.class)
 public class PatientCard implements Serializable{
     private String visit_start;
     private String visit_end;

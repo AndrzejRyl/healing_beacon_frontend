@@ -3,10 +3,6 @@ package sithlords.com.healingbeacon.rest;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.fasterxml.jackson.core.Version;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -28,10 +24,6 @@ public class PatientCardRequestTask extends AsyncTask<Long, Void, PatientCard> {
             RestTemplate restTemplate = new RestTemplate();
 
             MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter();
-            SimpleModule module = new SimpleModule("LongDeserializerModule", new Version(1, 0, 0, null));
-            module.addDeserializer(PatientCard.class, new PatientCardJsonDeserializer());
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.registerModule(module);
             restTemplate.getMessageConverters().add(messageConverter);
 
             return restTemplate.getForObject(ENDPOINT + "/beacons/" + params[0] + "/patient_card", PatientCard.class);

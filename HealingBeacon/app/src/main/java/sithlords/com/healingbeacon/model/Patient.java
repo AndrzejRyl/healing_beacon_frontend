@@ -9,6 +9,7 @@ public class Patient implements Serializable{
     private long id;
     private String first_name;
     private String last_name;
+    private String photo_url;
 
     public Patient(long id, String first_name, String last_name) {
         this.id = id;
@@ -43,4 +44,7 @@ public class Patient implements Serializable{
         this.last_name = last_name;
     }
 
+    public void setPhoto_url(String photo_url) {
+        this.photo_url = photo_url;
+    }
 }
