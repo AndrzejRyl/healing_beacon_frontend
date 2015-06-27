@@ -22,8 +22,10 @@
             android:id="@+id/dashboard_patient_pic"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
-            android:src=""
-            android:layout_weight="0.5" />
+            android:src="@mipmap/test"
+            android:layout_weight="0.5"
+            android:nestedScrollingEnabled="true"
+            android:padding="15px" />
 
         <LinearLayout
             android:id="@+id/dashboard_layout_top_right"
