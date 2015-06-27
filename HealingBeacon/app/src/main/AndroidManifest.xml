@@ -54,6 +54,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".LaboratoryTestsActivity"
+            android:label="@string/title_activity_laboratory_tests" >
+        </activity>
+        <activity
+            android:name=".LaboratoryTestsResultsActivity"
+            android:label="@string/title_activity_laboratory_tests_results" >
+        </activity>
     </application>
 
 </manifest>
