@@ -21,6 +21,7 @@ public class PatientCard implements Serializable {
     private List<BloodMeasurement> bloodPressureMeasurements;
     private List<DrugDose> drugDoses;
     private List<Test> tests;
+    private List<PrescribedDrug> prescribedDrugs;
 
     public Date getVisitStart() {
         return visitStart;
@@ -76,5 +77,13 @@ public class PatientCard implements Serializable {
 
     public void setTests(List<Test> tests) {
         this.tests = tests;
+    }
+
+    public List<PrescribedDrug> getPrescribedDrugs() {
+        return prescribedDrugs;
+    }
+
+    public void setPrescribedDrugs(List<PrescribedDrug> prescribedDrugs) {
+        this.prescribedDrugs = prescribedDrugs;
     }
 }

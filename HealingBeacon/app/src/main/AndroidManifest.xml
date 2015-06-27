@@ -40,6 +40,10 @@
             android:name=".patients.DashboardActivity"
             android:label="@string/title_activity_dashboard" >
         </activity>
+        <activity
+            android:name=".PrescribedDrugsActivity"
+            android:label="@string/title_activity_prescribed_drugs" >
+        </activity>
     </application>
 
 </manifest>
