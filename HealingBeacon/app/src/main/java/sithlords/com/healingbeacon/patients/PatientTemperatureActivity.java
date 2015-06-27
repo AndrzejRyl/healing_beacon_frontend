@@ -8,12 +8,12 @@ import android.view.WindowManager;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.DataSet;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -43,9 +43,11 @@ public class PatientTemperatureActivity extends ActionBarActivity {
 
         List<Entry> entries = newArrayList();
         List<TemperatureMeasurement> measurements = patientCard.getTemperatureMeasurements();
+        Collections.sort(measurements);
         List<String> xVals = newArrayList();
+        int i = 0;
         for (TemperatureMeasurement temp : measurements) {
-            Entry entry = new Entry((float) temp.getDegreeCelcius(), 0);
+            Entry entry = new Entry((float) temp.getDegreeCelcius(), i++);
             entries.add(entry);
             xVals.add(DATE_FORMAT.format(temp.getMeasurementTime()));
         }

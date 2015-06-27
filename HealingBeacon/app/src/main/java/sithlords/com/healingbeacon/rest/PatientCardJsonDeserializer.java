@@ -22,7 +22,7 @@ import static com.google.common.collect.Lists.newArrayList;
 
 public class PatientCardJsonDeserializer extends JsonDeserializer<PatientCard> {
 
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:sssZ", Locale.US);
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
     private static final SimpleDateFormat BIRTH_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
     @Override
@@ -58,7 +58,7 @@ public class PatientCardJsonDeserializer extends JsonDeserializer<PatientCard> {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                temperatureMeasurement.setDegreeCelcius(tempNode.get("degree_celcius").asDouble());
+                temperatureMeasurement.setDegreeCelcius(tempNode.get("degree_celsius").asDouble());
                 temperatureMeasurements.add(temperatureMeasurement);
             }
         }
