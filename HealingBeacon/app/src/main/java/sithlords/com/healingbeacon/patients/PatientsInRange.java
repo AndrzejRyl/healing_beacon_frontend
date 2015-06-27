@@ -22,13 +22,16 @@ import java.util.Map;
 
 import sithlords.com.healingbeacon.R;
 import sithlords.com.healingbeacon.model.Patient;
+import sithlords.com.healingbeacon.model.PatientCard;
+import sithlords.com.healingbeacon.rest.PatientCardResponseListener;
+import sithlords.com.healingbeacon.service.ExternalServiceImpl;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;
 import static com.google.common.collect.Sets.newHashSet;
 
 
-public class PatientsInRange extends ActionBarActivity {
+public class PatientsInRange extends ActionBarActivity implements PatientCardResponseListener {
     private static final int REQUEST_CODE_ENABLE_BLUETOOTH = 1;
     public static final String PATIENT = "Patient ID";
 
@@ -36,8 +39,9 @@ public class PatientsInRange extends ActionBarActivity {
     private Map<Integer, BeaconDevice> ourBeacons;
     private List<Integer> beaconIDs;
     private ListView listView;
-    private List<Patient> patients;
+    private volatile Map<Integer,Patient> patients;
     private PatientListAdapter adapter;
+    private ExternalServiceImpl API;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +56,12 @@ public class PatientsInRange extends ActionBarActivity {
 
         // !! OMG !! This is hackaton so I hardcode this list. !! OMG !!
         beaconIDs = newArrayList(1, 2, 3, 4, 5, 6);
+        patients = newHashMap();
 
-        patients = newArrayList(
-                new Patient(1, "Jon", "Snow", "kupa", "2015-06-27","m", 12.3,12.3),
-                new Patient(2, "Jon2", "Snow", "kupa", "2015-06-27","m", 12.3,12.3),
-                new Patient(3, "Jon3", "Snow", "kupa","2015-06-27","m", 12.3,12.3),
-                new Patient(4, "Jon4", "Snow", "kupa","2015-06-27","m", 12.3,12.3),
-                new Patient(5, "Jon5", "Snow", "kupa","2015-06-27","m", 12.3,12.3),
-                new Patient(6, "Jon6", "Snow", "kupa","2015-06-27","m", 12.3,12.3)
-        );
+        // Build a map of all out patients
+        API = new ExternalServiceImpl(this);
+        for (long beaconID : beaconIDs)
+            API.getPatientCard(beaconID);
 
         // Find list view displaying patients in range
         listView = (ListView) findViewById(R.id.patients_list);
@@ -94,10 +95,12 @@ public class PatientsInRange extends ActionBarActivity {
                         // Update adapter (our list of patients in range)
                         adapter.clear();
                         for (BeaconDevice beacon : ourBeacons.values()) {
-                            // TODO: patients from API !!!!
-                            adapter.add(patients.get(beacon.getMinor() - 1));
+                            Patient patient = patients.get(beacon.getMinor());
+                            if (patient != null)
+                                adapter.add(patient);
                         }
                         adapter.notifyDataSetChanged();
+
                     }
                 });
             }
@@ -165,5 +168,10 @@ public class PatientsInRange extends ActionBarActivity {
         } catch (RemoteException e) {
 
         }
+    }
+
+    @Override
+    public void onPatientResponse(PatientCard patientCard) {
+        patients.put((int)patientCard.getPatient().getId(), patientCard.getPatient());
     }
 }
