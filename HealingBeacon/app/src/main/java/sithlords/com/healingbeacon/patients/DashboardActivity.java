@@ -67,6 +67,8 @@ public class DashboardActivity extends ActionBarActivity {
         // Set TVs
         name.setText(patient.getFirstName());
         surname.setText(patient.getLastName());
+
+        // Convert dates from strings and calculate age
         Date currentDate = new Date();
         Date birthDate = null;
         try {
@@ -75,9 +77,15 @@ public class DashboardActivity extends ActionBarActivity {
             e.printStackTrace();
         }
         age.setText(currentDate.getYear() - birthDate.getYear() + "");
-        weight.setText(String.valueOf(patient.getWeight()));
-        height.setText(String.valueOf(patient.getHeight()));
-        sex.setText(patient.getGender());
+        weight.setText(Math.round(patient.getWeight()) + " kg");
+        height.setText(Math.round(patient.getHeight()) + " cm");
+
+        // Set full sex names
+        if (patient.getGender().equals("f"))
+            sex.setText("female");
+        else {
+            sex.setText("male");
+        }
     }
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
