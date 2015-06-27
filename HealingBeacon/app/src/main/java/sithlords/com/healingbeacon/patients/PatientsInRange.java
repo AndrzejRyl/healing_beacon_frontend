@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.support.v7.app.ActionBarActivity;
+import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -14,7 +15,6 @@ import com.kontakt.sdk.android.connection.OnServiceBoundListener;
 import com.kontakt.sdk.android.device.BeaconDevice;
 import com.kontakt.sdk.android.device.Region;
 import com.kontakt.sdk.android.manager.BeaconManager;
-import com.kontakt.sdk.android.util.Logger;
 import com.kontakt.sdk.core.Proximity;
 
 import java.util.Date;
@@ -43,9 +43,12 @@ public class PatientsInRange extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_patients_in_range);
 
-        Logger.setDebugLoggingEnabled(false);
         ourBeacons = newHashMap();
 
         // !! OMG !! This is hackaton so I hardcode this list. !! OMG !!
