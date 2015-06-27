@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import sithlords.com.healingbeacon.PrescribedDrugsActivity;
 import sithlords.com.healingbeacon.R;
 import sithlords.com.healingbeacon.model.Patient;
 import sithlords.com.healingbeacon.model.PatientCard;
@@ -58,6 +59,12 @@ public class DashboardActivity extends ActionBarActivity {
 
         // Set all textviews data
         setData();
+    }
+
+    public void drugs(View view) {
+        Intent i  = new Intent(this, PrescribedDrugsActivity.class);
+        i.putExtra(PatientsInRange.PATIENT, patientCard);
+        startActivity(i);
     }
 
     private void setData() {
