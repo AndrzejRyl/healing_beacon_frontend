@@ -1,23 +1,19 @@
 package sithlords.com.healingbeacon.service;
 
-import sithlords.com.healingbeacon.rest.PatientRequestTask;
-import sithlords.com.healingbeacon.rest.PatientResponseListener;
+import sithlords.com.healingbeacon.rest.PatientCardRequestTask;
+import sithlords.com.healingbeacon.rest.PatientCardResponseListener;
 
 public class ExternalServiceImpl implements ExternalService {
 
-    private PatientResponseListener listener;
+    private PatientCardResponseListener listener;
 
-    private ExternalServiceImpl() {
-    }
-
-    public ExternalServiceImpl(PatientResponseListener listener) {
+    public ExternalServiceImpl(PatientCardResponseListener listener) {
         super();
         this.listener = listener;
     }
 
     @Override
     public void getPatientCard(long beaconID) {
-
-        new PatientRequestTask(listener).execute(beaconID);
+        new PatientCardRequestTask(listener).execute(beaconID);
     }
 }

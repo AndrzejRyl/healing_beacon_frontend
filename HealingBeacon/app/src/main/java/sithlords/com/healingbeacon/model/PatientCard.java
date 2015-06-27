@@ -1,45 +1,41 @@
 package sithlords.com.healingbeacon.model;
 
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.io.Serializable;
 import java.util.List;
+
+import sithlords.com.healingbeacon.rest.PatientCardJsonDeserializer;
 
 /**
  * @author FleenMobile at 2015-06-27
  */
-public class PatientCard implements Serializable{
-    private String visit_start;
-    private String visit_end;
+@JsonDeserialize(using = PatientCardJsonDeserializer.class)
+public class PatientCard implements Serializable {
+    private String visitStart;
+    private String visitEnd;
     private Patient patient;
-    private List<TemparatureMeasurement> temperatureMeasurements;
-    private List<BloodMeauserement> bloodPreasureMeasurements;
+    private List<TemperatureMeasurement> temperatureMeasurements;
+    private List<BloodMeasurement> bloodPressureMeasurements;
     private List<DrugDose> drugDoses;
     private List<Test> tests;
+    private List<PrescribedDrug> prescribedDrugs;
 
-    public PatientCard(String visit_start, String visit_end, Patient patient, List<TemparatureMeasurement> temperatureMeasurements, List<BloodMeauserement> bloodPreasureMeasurements, List<DrugDose> drugDoses, List<Test> tests) {
-        this.visit_start = visit_start;
-        this.visit_end = visit_end;
-        this.patient = patient;
-        this.temperatureMeasurements = temperatureMeasurements;
-        this.bloodPreasureMeasurements = bloodPreasureMeasurements;
-        this.drugDoses = drugDoses;
-        this.tests = tests;
+    public String getVisitStart() {
+        return visitStart;
     }
 
-    public String getVisit_start() {
-        return visit_start;
+    public void setVisitStart(String visitStart) {
+        this.visitStart = visitStart;
     }
 
-    public void setVisit_start(String visit_start) {
-        this.visit_start = visit_start;
+    public String getVisitEnd() {
+        return visitEnd;
     }
 
-    public String getVisit_end() {
-        return visit_end;
-    }
-
-    public void setVisit_end(String visit_end) {
-        this.visit_end = visit_end;
+    public void setVisitEnd(String visitEnd) {
+        this.visitEnd = visitEnd;
     }
 
     public Patient getPatient() {
@@ -50,20 +46,20 @@ public class PatientCard implements Serializable{
         this.patient = patient;
     }
 
-    public List<TemparatureMeasurement> getTemperatureMeasurements() {
+    public List<TemperatureMeasurement> getTemperatureMeasurements() {
         return temperatureMeasurements;
     }
 
-    public void setTemperatureMeasurements(List<TemparatureMeasurement> temperatureMeasurements) {
+    public void setTemperatureMeasurements(List<TemperatureMeasurement> temperatureMeasurements) {
         this.temperatureMeasurements = temperatureMeasurements;
     }
 
-    public List<BloodMeauserement> getBloodPreasureMeasurements() {
-        return bloodPreasureMeasurements;
+    public List<BloodMeasurement> getBloodPressureMeasurements() {
+        return bloodPressureMeasurements;
     }
 
-    public void setBloodPreasureMeasurements(List<BloodMeauserement> bloodPreasureMeasurements) {
-        this.bloodPreasureMeasurements = bloodPreasureMeasurements;
+    public void setBloodPressureMeasurements(List<BloodMeasurement> bloodPressureMeasurements) {
+        this.bloodPressureMeasurements = bloodPressureMeasurements;
     }
 
     public List<DrugDose> getDrugDoses() {
@@ -80,5 +76,13 @@ public class PatientCard implements Serializable{
 
     public void setTests(List<Test> tests) {
         this.tests = tests;
+    }
+
+    public List<PrescribedDrug> getPrescribedDrugs() {
+        return prescribedDrugs;
+    }
+
+    public void setPrescribedDrugs(List<PrescribedDrug> prescribedDrugs) {
+        this.prescribedDrugs = prescribedDrugs;
     }
 }

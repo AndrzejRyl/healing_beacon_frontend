@@ -40,6 +40,17 @@
             android:name=".patients.DashboardActivity"
             android:label="@string/title_activity_dashboard" >
         </activity>
+        <activity
+            android:name=".patients.PatientTemperatureActivity"
+            android:label="@string/title_activity_patient_temperature" >
+        </activity>
+        <activity
+            android:name=".PrescribedDrugsActivity"
+            android:label="@string/title_activity_prescribed_drugs" >
+        </activity>
+        <activity
+            android:name=".MedicalResearchActivity" >
+        </activity>
     </application>
 
 </manifest>

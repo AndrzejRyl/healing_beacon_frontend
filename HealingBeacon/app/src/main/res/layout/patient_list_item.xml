@@ -4,12 +4,13 @@
     android:layout_height="wrap_content"
     android:weightSum="1"
     android:background="#fff"
+    android:padding="3dp"
     android:layout_margin="5px">
 
     <ImageView
+        android:id="@+id/patient_list_item_pic"
         android:layout_width="0dp"
-        android:layout_height="fill_parent"
-        android:id="@+id/imageView"
+        android:layout_height="55dp"
         android:layout_weight="0.3"
         android:src="@mipmap/test"
         android:paddingLeft="15dp"

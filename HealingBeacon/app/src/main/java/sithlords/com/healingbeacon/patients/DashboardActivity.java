@@ -1,45 +1,135 @@
 package sithlords.com.healingbeacon.patients;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import sithlords.com.healingbeacon.MedicalResearchActivity;
+import sithlords.com.healingbeacon.PrescribedDrugsActivity;
 import sithlords.com.healingbeacon.R;
+import sithlords.com.healingbeacon.model.Patient;
 import sithlords.com.healingbeacon.model.PatientCard;
 
 public class DashboardActivity extends ActionBarActivity {
     private PatientCard patientCard;
 
+    private ImageView image;
+    private TextView name;
+    private TextView surname;
+    private TextView age;
+    private TextView weight;
+    private TextView height;
+    private TextView sex;
+
+    private static final SimpleDateFormat BIRTH_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_dashboard);
 
+        // Get patient's card with all data about his sicness
         patientCard = (PatientCard) getIntent().getExtras().get(PatientsInRange.PATIENT);
-        Log.e("Zonk", patientCard.getPatient().getFirst_name());
+
+        // Find views
+        image = (ImageView)findViewById(R.id.dashboard_patient_pic);
+        name = (TextView)findViewById(R.id.dashboard_name);
+        surname = (TextView)findViewById(R.id.dashboard_surname);
+        age = (TextView)findViewById(R.id.dashboard_age);
+        weight = (TextView)findViewById(R.id.dashboard_weight);
+        height = (TextView)findViewById(R.id.dashboard_height);
+        sex = (TextView)findViewById(R.id.dashboard_sex);
+
+        // Set all textviews data
+        setData();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_dashboard, menu);
-        return true;
+    public void drugs(View view) {
+        Intent i  = new Intent(this, PrescribedDrugsActivity.class);
+        i.putExtra(PatientsInRange.PATIENT, patientCard);
+        startActivity(i);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    private void setData() {
+        Patient patient = patientCard.getPatient();
+        // Set image
+        new DownloadImageTask(image)
+                .execute(patient.getPhotoUrl());
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        // Set TVs
+        name.setText(patient.getFirstName());
+        surname.setText(patient.getLastName());
+
+        // Convert dates from strings and calculate age
+        Date currentDate = new Date();
+        Date birthDate = null;
+        try {
+            birthDate = BIRTH_DATE_FORMAT.parse(patient.getDateOfBirth());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        age.setText(currentDate.getYear() - birthDate.getYear() + "");
+        weight.setText(Math.round(patient.getWeight()) + " kg");
+        height.setText(Math.round(patient.getHeight()) + " cm");
+
+        // Set full sex names
+        if (patient.getGender().equals("f"))
+            sex.setText("female");
+        else {
+            sex.setText("male");
+        }
+    }
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
         }
 
-        return super.onOptionsItemSelected(item);
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
+    }
+
+    public void medicalResearch(View v) {
+        final Intent intent = new Intent(this, MedicalResearchActivity.class);
+        intent.putExtra(PatientsInRange.PATIENT, patientCard);
+        startActivity(intent);
+    }
+
+    public void history(View v) {
+        Intent i = new Intent(this, PatientTemperatureActivity.class);
+        i.putExtra(PatientsInRange.PATIENT, patientCard);
+        startActivity(i);
     }
 }
