@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 import sithlords.com.healingbeacon.model.Patient;
 
-public class PatientRequestTask extends AsyncTask<Void, Void, Patient> {
+public class PatientRequestTask extends AsyncTask<Long, Void, Patient> {
 
     private static final String ENDPOINT = "http://example.com/patient/";
 
@@ -19,7 +19,7 @@ public class PatientRequestTask extends AsyncTask<Void, Void, Patient> {
     }
 
     @Override
-    protected Patient doInBackground(Void... params) {
+    protected Patient doInBackground(Long... params) {
         try {
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
