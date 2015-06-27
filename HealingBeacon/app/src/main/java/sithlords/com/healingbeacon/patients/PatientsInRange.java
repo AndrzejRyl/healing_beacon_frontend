@@ -6,12 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.kontakt.sdk.android.configuration.BeaconActivityCheckConfiguration;
-import com.kontakt.sdk.android.configuration.MonitorPeriod;
+import com.kontakt.sdk.android.configuration.ForceScanConfiguration;
 import com.kontakt.sdk.android.connection.OnServiceBoundListener;
 import com.kontakt.sdk.android.device.BeaconDevice;
 import com.kontakt.sdk.android.device.Region;
@@ -51,12 +49,12 @@ public class PatientsInRange extends ActionBarActivity {
         // !! OMG !! This is hackaton so I hardcode this list. !! OMG !!
         beaconIDs = newArrayList(1, 2, 3, 4, 5, 6);
         patients = newArrayList(
-                new Patient(1,"Jon", "Snow",1),
-                new Patient(2,"Cersei", "Lannister",1),
-                new Patient(3,"Tyrion", "Lannister",3),
-                new Patient(4,"Sansa", "Stark",4),
-                new Patient(5,"Hodor", "Hodor",5),
-                new Patient(6,"Margaery", "Tyrell",6));
+                new Patient(1, "Jon", "Snow", 1),
+                new Patient(2, "Cersei", "Lannister", 1),
+                new Patient(3, "Tyrion", "Lannister", 3),
+                new Patient(4, "Sansa", "Stark", 4),
+                new Patient(5, "Hodor", "Hodor", 5),
+                new Patient(6, "Margaery", "Tyrell", 6));
 
         // Find list view displaying patients in range
         listView = (ListView) findViewById(R.id.patients_list);
@@ -71,13 +69,10 @@ public class PatientsInRange extends ActionBarActivity {
 
     private void initializeBeaconManager() {
         beaconManager = BeaconManager.newInstance(this);
-        beaconManager.setBeaconActivityCheckConfiguration(new BeaconActivityCheckConfiguration(6000,9000));
-        beaconManager.setScanMode(BeaconManager.SCAN_MODE_LOW_POWER);
-        beaconManager.setMonitorPeriod(MonitorPeriod.MINIMAL);
+        beaconManager.setForceScanConfiguration(new ForceScanConfiguration(700, 2000));
         beaconManager.registerRangingListener(new BeaconManager.RangingListener() {
             @Override
             public void onBeaconsDiscovered(final Region region, final List<BeaconDevice> beacons) {
-                Log.e("Zonk", "zonk");
                 PatientsInRange.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -93,14 +88,13 @@ public class PatientsInRange extends ActionBarActivity {
                         // Update adapter (our list of patients in range)
                         adapter.clear();
                         for (BeaconDevice beacon : ourBeacons.values()) {
-                            adapter.add(patients.get(beacon.getMinor()-1));
+                            adapter.add(patients.get(beacon.getMinor() - 1));
                         }
                         adapter.notifyDataSetChanged();
                     }
                 });
             }
 
-            ;
 
         });
 
