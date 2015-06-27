@@ -4,6 +4,7 @@ package sithlords.com.healingbeacon.model;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import sithlords.com.healingbeacon.rest.PatientCardJsonDeserializer;
@@ -13,30 +14,27 @@ import sithlords.com.healingbeacon.rest.PatientCardJsonDeserializer;
  */
 @JsonDeserialize(using = PatientCardJsonDeserializer.class)
 public class PatientCard implements Serializable {
-    private String visitStart;
-    private String visitEnd;
+    private Date visitStart;
+    private Date visitEnd;
     private Patient patient;
-    private List<TemparatureMeasurement> temperatureMeasurements;
-    private List<BloodMeauserement> bloodPressureMeasurements;
+    private List<TemperatureMeasurement> temperatureMeasurements;
+    private List<BloodMeasurement> bloodPressureMeasurements;
     private List<DrugDose> drugDoses;
     private List<Test> tests;
 
-    public PatientCard() {
-    }
-
-    public String getVisitStart() {
+    public Date getVisitStart() {
         return visitStart;
     }
 
-    public void setVisitStart(String visitStart) {
+    public void setVisitStart(Date visitStart) {
         this.visitStart = visitStart;
     }
 
-    public String getVisitEnd() {
+    public Date getVisitEnd() {
         return visitEnd;
     }
 
-    public void setVisitEnd(String visitEnd) {
+    public void setVisitEnd(Date visitEnd) {
         this.visitEnd = visitEnd;
     }
 
@@ -48,19 +46,19 @@ public class PatientCard implements Serializable {
         this.patient = patient;
     }
 
-    public List<TemparatureMeasurement> getTemperatureMeasurements() {
+    public List<TemperatureMeasurement> getTemperatureMeasurements() {
         return temperatureMeasurements;
     }
 
-    public void setTemperatureMeasurements(List<TemparatureMeasurement> temperatureMeasurements) {
+    public void setTemperatureMeasurements(List<TemperatureMeasurement> temperatureMeasurements) {
         this.temperatureMeasurements = temperatureMeasurements;
     }
 
-    public List<BloodMeauserement> getBloodPressureMeasurements() {
+    public List<BloodMeasurement> getBloodPressureMeasurements() {
         return bloodPressureMeasurements;
     }
 
-    public void setBloodPressureMeasurements(List<BloodMeauserement> bloodPressureMeasurements) {
+    public void setBloodPressureMeasurements(List<BloodMeasurement> bloodPressureMeasurements) {
         this.bloodPressureMeasurements = bloodPressureMeasurements;
     }
 

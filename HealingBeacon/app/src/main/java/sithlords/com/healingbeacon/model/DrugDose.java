@@ -1,26 +1,21 @@
 package sithlords.com.healingbeacon.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author FleenMobile at 2015-06-27
  */
 public class DrugDose implements Serializable {
-    private String doseTime;
+    private Date doseTime;
     private String drugName;
     private int milligrams;
 
-    public DrugDose(String doseTime, String drugName, int milligrams) {
-        this.doseTime = doseTime;
-        this.drugName = drugName;
-        this.milligrams = milligrams;
-    }
-
-    public String getDoseTime() {
+    public Date getDoseTime() {
         return doseTime;
     }
 
-    public void setDoseTime(String doseTime) {
+    public void setDoseTime(Date doseTime) {
         this.doseTime = doseTime;
     }
 
