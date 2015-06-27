@@ -24,10 +24,6 @@
             android:value="xsZdLraWgZaKmQBEdShlPdqRTVvrFYLW" />
 
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
             android:name=".BeaconRangeActivity"
             android:label="@string/title_activity_beacon_monitor" >
             <intent-filter>
