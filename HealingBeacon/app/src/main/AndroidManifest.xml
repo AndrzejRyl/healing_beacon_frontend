@@ -44,6 +44,10 @@
             android:name=".patients.PatientTemperatureActivity"
             android:label="@string/title_activity_patient_temperature" >
         </activity>
+        <activity
+            android:name=".PrescribedDrugsActivity"
+            android:label="@string/title_activity_prescribed_drugs" >
+        </activity>
     </application>
 
 </manifest>

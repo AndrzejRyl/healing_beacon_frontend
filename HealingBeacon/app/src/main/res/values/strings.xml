@@ -1,10 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">HealingBeacon</string>
-
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_beacon_monitor">BeaconMonitorActivity</string>
     <string name="title_activity_patients_in_range">PatientsInRange</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="title_activity_patient_temperature">PatientTemperatureActivity</string>
+    <string name="title_activity_prescribed_drugs">PrescribedDrugsActivity</string>
+
 </resources>

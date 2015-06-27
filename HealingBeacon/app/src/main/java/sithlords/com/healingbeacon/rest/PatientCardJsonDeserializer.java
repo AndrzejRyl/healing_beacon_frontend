@@ -15,6 +15,7 @@ import sithlords.com.healingbeacon.model.BloodMeasurement;
 import sithlords.com.healingbeacon.model.DrugDose;
 import sithlords.com.healingbeacon.model.Patient;
 import sithlords.com.healingbeacon.model.PatientCard;
+import sithlords.com.healingbeacon.model.PrescribedDrug;
 import sithlords.com.healingbeacon.model.TemperatureMeasurement;
 
 import static com.google.common.collect.Lists.newArrayList;
@@ -79,10 +80,21 @@ public class PatientCardJsonDeserializer extends JsonDeserializer<PatientCard> {
         }
         patientCard.setBloodPressureMeasurements(bloodMeasurements);
 
+        List<PrescribedDrug> prescribedDrugs = newArrayList();
+        final JsonNode prescribedDrugsNode = rootNode.get("prescribed_drugs");
+        for (JsonNode prescribedDrugNode : prescribedDrugsNode) {
+            final PrescribedDrug prescribedDrug = new PrescribedDrug();
+            prescribedDrug.setDrugName(prescribedDrugNode.get("drug_name").asText());
+            prescribedDrug.setIntervalHours(prescribedDrugNode.get("interval_hours").asInt());
+            prescribedDrug.setDoseMilligrams(prescribedDrugNode.get("dose_milligrams").asInt());
+            prescribedDrugs.add(prescribedDrug);
+        }
+        patientCard.setPrescribedDrugs(prescribedDrugs);
+
         List<DrugDose> drugDoses = newArrayList();
         JsonNode drugNodes = rootNode.get("drug_doses");
         if (drugNodes.isArray()) {
-            for (JsonNode drugNode : temperatureNodes) {
+            for (JsonNode drugNode : drugNodes) {
                 DrugDose drugDose = new DrugDose();
                 try {
                     drugDose.setDoseTime(DATE_FORMAT.parse(drugNode.get("dose_time").asText()));
