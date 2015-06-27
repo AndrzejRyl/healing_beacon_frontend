@@ -16,6 +16,22 @@ public class Patient implements Serializable {
     private Double weight;
     private Double height;
 
+    public Patient(){
+
+    }
+
+    public Patient(long id, String firstName, String lastName, String photoUrl,
+                   Date dateOfBirth, String gender, Double weight, Double height) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.photoUrl = photoUrl;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.weight = weight;
+        this.height = height;
+    }
+
     public long getId() {
         return id;
     }
@@ -56,24 +72,12 @@ public class Patient implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getGender() {
-        return gender;
-    }
-
     public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public Double getWeight() {
-        return weight;
-    }
-
     public void setWeight(Double weight) {
         this.weight = weight;
-    }
-
-    public Double getHeight() {
-        return height;
     }
 
     public void setHeight(Double height) {

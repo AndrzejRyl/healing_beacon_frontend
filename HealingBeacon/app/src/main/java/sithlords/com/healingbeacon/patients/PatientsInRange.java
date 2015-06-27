@@ -17,6 +17,7 @@ import com.kontakt.sdk.android.manager.BeaconManager;
 import com.kontakt.sdk.android.util.Logger;
 import com.kontakt.sdk.core.Proximity;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -49,13 +50,15 @@ public class PatientsInRange extends ActionBarActivity {
 
         // !! OMG !! This is hackaton so I hardcode this list. !! OMG !!
         beaconIDs = newArrayList(1, 2, 3, 4, 5, 6);
+
         patients = newArrayList(
-                new Patient(1, "Jon", "Snow"),
-                new Patient(2, "Cersei", "Lannister"),
-                new Patient(3, "Tyrion", "Lannister"),
-                new Patient(4, "Sansa", "Stark"),
-                new Patient(5, "Hodor", "Hodor"),
-                new Patient(6, "Margaery", "Tyrell"));
+                new Patient(1, "Jon", "Snow", "kupa", new Date(),"m", 12.3,12.3),
+                new Patient(2, "Jon2", "Snow", "kupa", new Date(),"m", 12.3,12.3),
+                new Patient(3, "Jon3", "Snow", "kupa", new Date(),"m", 12.3,12.3),
+                new Patient(4, "Jon4", "Snow", "kupa", new Date(),"m", 12.3,12.3),
+                new Patient(5, "Jon5", "Snow", "kupa", new Date(),"m", 12.3,12.3),
+                new Patient(6, "Jon6", "Snow", "kupa", new Date(),"m", 12.3,12.3)
+        );
 
         // Find list view displaying patients in range
         listView = (ListView) findViewById(R.id.patients_list);

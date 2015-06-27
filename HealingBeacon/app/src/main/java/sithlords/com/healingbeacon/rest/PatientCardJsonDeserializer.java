@@ -66,7 +66,7 @@ public class PatientCardJsonDeserializer extends JsonDeserializer<PatientCard> {
         patientCard.setTemperatureMeasurements(temperatureMeasurements);
 
         List<BloodMeasurement> bloodMeasurements = newArrayList();
-        JsonNode bloodNodes = rootNode.get("blood_measurements");
+        JsonNode bloodNodes = rootNode.get("blood_pressure_measurements");
         if (bloodNodes.isArray()) {
             for (JsonNode bloodNode : bloodNodes) {
                 BloodMeasurement bloodMeasurement = new BloodMeasurement();

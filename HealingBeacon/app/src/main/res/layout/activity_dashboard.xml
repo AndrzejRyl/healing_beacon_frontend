@@ -9,6 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="#D891FF"
     android:weightSum="4"
+    android:keepScreenOn="true"
     tools:context="sithlords.com.healingbeacon.patients.DashboardActivity">
 
     <LinearLayout
