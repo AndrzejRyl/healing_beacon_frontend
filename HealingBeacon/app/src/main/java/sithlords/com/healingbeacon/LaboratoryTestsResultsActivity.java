@@ -4,9 +4,12 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
 
 import java.util.List;
 
+import sithlords.com.healingbeacon.adapter.TestResultListAdapter;
 import sithlords.com.healingbeacon.model.GroupedTests;
 import sithlords.com.healingbeacon.model.PatientCard;
 import sithlords.com.healingbeacon.model.Test;
@@ -26,6 +29,8 @@ public class LaboratoryTestsResultsActivity extends ActionBarActivity {
 
         final List<Test> testResults = groupedTests.getTestsForType(selectedTestsType);
 
-        findViewById(R.id.test)
+        final ListView listView = (ListView) findViewById(R.id.laboratoryTestsList);
+        final TestResultListAdapter adapter = new TestResultListAdapter(this, testResults);
+        listView.setAdapter(adapter);
     }
 }

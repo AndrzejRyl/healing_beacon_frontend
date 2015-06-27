@@ -2,44 +2,52 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:weightSum="1"
     android:background="#ffffff"
     android:paddingBottom="10sp"
-    android:paddingTop="10sp">
-
-    <TextView
-        android:id="@+id/prescribedDrugName"
-        android:layout_width="0dp"
-        android:layout_height="fill_parent"
-        android:textSize="25sp"
-        android:layout_marginBottom="2sp"
-        android:text="Prozac"
-        android:layout_weight="0.7"
-        android:gravity="center" />
+    android:paddingTop="10sp"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="fill_parent"
-        android:layout_weight="0.3"
-        android:weightSum="1"
-        android:orientation="vertical"
-        android:paddingRight="5sp">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
 
         <TextView
-            android:id="@+id/intervalHours"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" android:text="Every 5 hours"
-            android:layout_weight="0.5"
-            android:gravity="end" />
-
-        <TextView
-            android:id="@+id/doseMilligrams"
-            android:layout_width="fill_parent"
+            android:id="@+id/testType"
+            android:layout_width="0dp"
             android:layout_height="fill_parent"
+            android:layout_marginBottom="2sp"
+            android:layout_weight="0.7"
+            android:gravity="center"
+            android:text="Prozac"
+            android:textSize="25sp" />
 
-            android:gravity="end" android:text="120mg"
-            android:layout_weight="0.5" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.3"
+            android:orientation="vertical"
+            android:paddingRight="5sp"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/testTimeTaken"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.5"
+                android:gravity="end"
+                android:text="Date" />
+
+        </LinearLayout>
 
     </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/testResult"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Test"
+        android:paddingLeft="10sp"/>
 
 </LinearLayout>

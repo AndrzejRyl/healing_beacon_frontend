@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">HealingBeacon</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -8,5 +9,7 @@
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="title_activity_patient_temperature">PatientTemperatureActivity</string>
     <string name="title_activity_prescribed_drugs">PrescribedDrugsActivity</string>
+    <string name="title_activity_laboratory_tests">LaboratoryTestsActivity</string>
+    <string name="title_activity_laboratory_tests_results">LaboratoryTestsResults</string>
 
 </resources>
