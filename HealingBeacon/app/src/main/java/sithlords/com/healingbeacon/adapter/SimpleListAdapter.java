@@ -21,7 +21,7 @@ public class SimpleListAdapter extends ArrayAdapter<String> {
         final String string = getItem(position);
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.prescribed_drug_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.simple_list_item, parent, false);
         }
 
         final TextView titleField = (TextView) convertView.findViewById(R.id.simpleListItemTitle);

@@ -121,7 +121,7 @@ public class DashboardActivity extends ActionBarActivity {
         }
     }
 
-    public void medicalResearch() {
+    public void medicalResearch(View v) {
         final Intent intent = new Intent(this, MedicalResearchActivity.class);
         intent.putExtra(PatientsInRange.PATIENT, patientCard);
         startActivity(intent);

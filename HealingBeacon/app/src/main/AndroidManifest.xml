@@ -48,6 +48,9 @@
             android:name=".PrescribedDrugsActivity"
             android:label="@string/title_activity_prescribed_drugs" >
         </activity>
+        <activity
+            android:name=".MedicalResearchActivity" >
+        </activity>
     </application>
 
 </manifest>
