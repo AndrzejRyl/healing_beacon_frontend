@@ -15,6 +15,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 import sithlords.com.healingbeacon.R;
 import sithlords.com.healingbeacon.model.PatientCard;
@@ -24,9 +25,7 @@ import static com.google.common.collect.Lists.newArrayList;
 
 public class PatientTemperatureActivity extends ActionBarActivity {
 
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MM-dd");
-    private PatientCard patientCard;
-    private LineChart chart;
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MM-dd", Locale.US);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +37,9 @@ public class PatientTemperatureActivity extends ActionBarActivity {
 
         setContentView(R.layout.activity_patient_temperature);
 
-        patientCard = (PatientCard) getIntent().getExtras().get(PatientsInRange.PATIENT);
+        PatientCard patientCard = (PatientCard) getIntent().getExtras().get(PatientsInRange.PATIENT);
 
-        chart = (LineChart) findViewById(R.id.chart);
+        LineChart chart = (LineChart) findViewById(R.id.chart);
 
         List<Entry> entries = newArrayList();
         List<TemperatureMeasurement> measurements = patientCard.getTemperatureMeasurements();
