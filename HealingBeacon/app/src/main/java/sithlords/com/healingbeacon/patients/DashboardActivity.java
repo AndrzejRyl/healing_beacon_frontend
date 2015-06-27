@@ -18,7 +18,7 @@ public class DashboardActivity extends ActionBarActivity {
         setContentView(R.layout.activity_dashboard);
 
         patientCard = (PatientCard) getIntent().getExtras().get(PatientsInRange.PATIENT);
-        Log.e("Zonk", patientCard.getPatient().getFirst_name());
+        Log.e("Zonk", patientCard.getPatient().getFirstName());
     }
 
     @Override

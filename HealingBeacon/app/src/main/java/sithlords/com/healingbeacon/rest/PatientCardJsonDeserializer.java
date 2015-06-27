@@ -21,9 +21,9 @@ public class PatientCardJsonDeserializer extends JsonDeserializer<PatientCard> {
 
         Patient patient = new Patient();
         patient.setId(patientNode.get("id").asLong());
-        patient.setFirst_name(patientNode.get("first_name").asText());
-        patient.setLast_name(patientNode.get("last_name").asText());
-        patient.setPhoto_url(patientNode.get("photo_url").asText());
+        patient.setFirstName(patientNode.get("first_name").asText());
+        patient.setLastName(patientNode.get("last_name").asText());
+        patient.setPhotoUrl(patientNode.get("photo_url").asText());
         patientCard.setPatient(patient);
 
         return patientCard;

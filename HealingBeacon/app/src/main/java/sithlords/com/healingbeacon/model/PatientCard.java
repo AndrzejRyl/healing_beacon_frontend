@@ -12,32 +12,32 @@ import sithlords.com.healingbeacon.rest.PatientCardJsonDeserializer;
  * @author FleenMobile at 2015-06-27
  */
 @JsonDeserialize(using = PatientCardJsonDeserializer.class)
-public class PatientCard implements Serializable{
-    private String visit_start;
-    private String visit_end;
+public class PatientCard implements Serializable {
+    private String visitStart;
+    private String visitEnd;
     private Patient patient;
     private List<TemparatureMeasurement> temperatureMeasurements;
-    private List<BloodMeauserement> bloodPreasureMeasurements;
+    private List<BloodMeauserement> bloodPressureMeasurements;
     private List<DrugDose> drugDoses;
     private List<Test> tests;
 
     public PatientCard() {
     }
 
-    public String getVisit_start() {
-        return visit_start;
+    public String getVisitStart() {
+        return visitStart;
     }
 
-    public void setVisit_start(String visit_start) {
-        this.visit_start = visit_start;
+    public void setVisitStart(String visitStart) {
+        this.visitStart = visitStart;
     }
 
-    public String getVisit_end() {
-        return visit_end;
+    public String getVisitEnd() {
+        return visitEnd;
     }
 
-    public void setVisit_end(String visit_end) {
-        this.visit_end = visit_end;
+    public void setVisitEnd(String visitEnd) {
+        this.visitEnd = visitEnd;
     }
 
     public Patient getPatient() {
@@ -56,12 +56,12 @@ public class PatientCard implements Serializable{
         this.temperatureMeasurements = temperatureMeasurements;
     }
 
-    public List<BloodMeauserement> getBloodPreasureMeasurements() {
-        return bloodPreasureMeasurements;
+    public List<BloodMeauserement> getBloodPressureMeasurements() {
+        return bloodPressureMeasurements;
     }
 
-    public void setBloodPreasureMeasurements(List<BloodMeauserement> bloodPreasureMeasurements) {
-        this.bloodPreasureMeasurements = bloodPreasureMeasurements;
+    public void setBloodPressureMeasurements(List<BloodMeauserement> bloodPressureMeasurements) {
+        this.bloodPressureMeasurements = bloodPressureMeasurements;
     }
 
     public List<DrugDose> getDrugDoses() {
