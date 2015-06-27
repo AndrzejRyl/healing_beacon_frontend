@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="#D891FF"
+    android:background="#F2F2F2"
     android:weightSum="4"
     tools:context="sithlords.com.healingbeacon.patients.DashboardActivity">
 
@@ -157,18 +157,22 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:onClick="medicalResearch"
-                android:background="#E70046"
+                android:background="#A77FFF"
                 android:textColor="#FFFFFF"
-                android:text="Medical Research" />
+                android:text="MEDICAL RESEARCH"
+                android:textSize="30dp"
+                android:gravity="center_vertical|center_horizontal" />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:onClick="drugs"
-                android:background="#002E87"
+                android:background="#7FCAFF"
                 android:textColor="#FFFFFF"
-                android:text="Drugs" />
+                android:text="DRUGS"
+                android:textSize="30dp"
+                android:gravity="center_vertical|center_horizontal" />
 
         </LinearLayout>
 
@@ -183,9 +187,11 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:onClick="hospitalStay"
-                android:background="#000300"
+                android:background="#62f5c8"
                 android:textColor="#FFFFFF"
-                android:text="Hospital Stay" />
+                android:textSize="30dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="HOSPITAL STAY" />
 
             <Button
                 android:layout_width="0dp"
@@ -193,8 +199,10 @@
                 android:layout_weight="1"
                 android:onClick="history"
                 android:textColor="#FFFFFF"
-                android:background="#8100B4"
-                android:text="History" />
+                android:textSize="30dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="#ff7fb0"
+                android:text="HISTORY" />
 
         </LinearLayout>
 
