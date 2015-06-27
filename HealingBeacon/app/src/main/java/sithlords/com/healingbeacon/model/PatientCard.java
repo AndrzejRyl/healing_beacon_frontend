@@ -16,14 +16,7 @@ public class PatientCard implements Serializable{
     private List<DrugDose> drugDoses;
     private List<Test> tests;
 
-    public PatientCard(String visit_start, String visit_end, Patient patient, List<TemparatureMeasurement> temperatureMeasurements, List<BloodMeauserement> bloodPreasureMeasurements, List<DrugDose> drugDoses, List<Test> tests) {
-        this.visit_start = visit_start;
-        this.visit_end = visit_end;
-        this.patient = patient;
-        this.temperatureMeasurements = temperatureMeasurements;
-        this.bloodPreasureMeasurements = bloodPreasureMeasurements;
-        this.drugDoses = drugDoses;
-        this.tests = tests;
+    public PatientCard() {
     }
 
     public String getVisit_start() {

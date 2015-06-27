@@ -14,7 +14,7 @@ import java.util.List;
 import sithlords.com.healingbeacon.R;
 import sithlords.com.healingbeacon.model.Patient;
 import sithlords.com.healingbeacon.model.PatientCard;
-import sithlords.com.healingbeacon.rest.PatientResponseListener;
+import sithlords.com.healingbeacon.rest.PatientCardResponseListener;
 import sithlords.com.healingbeacon.service.ExternalServiceImpl;
 
 import static com.google.common.collect.Lists.newArrayList;
@@ -22,7 +22,7 @@ import static com.google.common.collect.Lists.newArrayList;
 /**
  * @author FleenMobile at 2015-06-27
  */
-public class PatientListAdapter extends ArrayAdapter implements PatientResponseListener {
+public class PatientListAdapter extends ArrayAdapter implements PatientCardResponseListener {
 
     private List<Patient> data;
     private Context context;

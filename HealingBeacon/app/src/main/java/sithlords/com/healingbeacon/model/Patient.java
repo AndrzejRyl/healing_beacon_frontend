@@ -16,6 +16,9 @@ public class Patient implements Serializable{
         this.last_name = last_name;
     }
 
+    public Patient() {
+    }
+
     public long getId() {
         return id;
     }
