@@ -4,7 +4,6 @@ package sithlords.com.healingbeacon.model;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import sithlords.com.healingbeacon.rest.PatientCardJsonDeserializer;
@@ -14,27 +13,27 @@ import sithlords.com.healingbeacon.rest.PatientCardJsonDeserializer;
  */
 @JsonDeserialize(using = PatientCardJsonDeserializer.class)
 public class PatientCard implements Serializable {
-    private Date visitStart;
-    private Date visitEnd;
+    private String visitStart;
+    private String visitEnd;
     private Patient patient;
     private List<TemperatureMeasurement> temperatureMeasurements;
     private List<BloodMeasurement> bloodPressureMeasurements;
     private List<DrugDose> drugDoses;
     private List<Test> tests;
 
-    public Date getVisitStart() {
+    public String getVisitStart() {
         return visitStart;
     }
 
-    public void setVisitStart(Date visitStart) {
+    public void setVisitStart(String visitStart) {
         this.visitStart = visitStart;
     }
 
-    public Date getVisitEnd() {
+    public String getVisitEnd() {
         return visitEnd;
     }
 
-    public void setVisitEnd(Date visitEnd) {
+    public void setVisitEnd(String visitEnd) {
         this.visitEnd = visitEnd;
     }
 

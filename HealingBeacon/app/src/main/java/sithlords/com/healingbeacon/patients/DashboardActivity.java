@@ -10,8 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import sithlords.com.healingbeacon.R;
+import sithlords.com.healingbeacon.model.Patient;
 import sithlords.com.healingbeacon.model.PatientCard;
 
 public class DashboardActivity extends ActionBarActivity {
@@ -24,6 +29,8 @@ public class DashboardActivity extends ActionBarActivity {
     private TextView weight;
     private TextView height;
     private TextView sex;
+
+    private static final SimpleDateFormat BIRTH_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +59,25 @@ public class DashboardActivity extends ActionBarActivity {
     }
 
     private void setData() {
+        Patient patient = patientCard.getPatient();
         // Set image
         new DownloadImageTask(image)
-                .execute(patientCard.getPatient().getPhotoUrl());
+                .execute(patient.getPhotoUrl());
 
+        // Set TVs
+        name.setText(patient.getFirstName());
+        surname.setText(patient.getLastName());
+        Date currentDate = new Date();
+        Date birthDate = null;
+        try {
+            birthDate = BIRTH_DATE_FORMAT.parse(patient.getDateOfBirth());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        age.setText(currentDate.getYear() - birthDate.getYear() + "");
+        weight.setText(String.valueOf(patient.getWeight()));
+        height.setText(String.valueOf(patient.getHeight()));
+        sex.setText(patient.getGender());
     }
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;

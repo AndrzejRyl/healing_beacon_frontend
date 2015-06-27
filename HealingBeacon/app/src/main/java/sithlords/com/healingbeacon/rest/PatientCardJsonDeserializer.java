@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 import sithlords.com.healingbeacon.model.BloodMeasurement;
 import sithlords.com.healingbeacon.model.DrugDose;
@@ -20,7 +21,8 @@ import static com.google.common.collect.Lists.newArrayList;
 
 public class PatientCardJsonDeserializer extends JsonDeserializer<PatientCard> {
 
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:sssZ");
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:sssZ", Locale.US);
+    private static final SimpleDateFormat BIRTH_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
     @Override
     public PatientCard deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
@@ -34,14 +36,9 @@ public class PatientCardJsonDeserializer extends JsonDeserializer<PatientCard> {
         patient.setFirstName(patientNode.get("first_name").asText());
         patient.setLastName(patientNode.get("last_name").asText());
         patient.setPhotoUrl(patientNode.get("photo_url").asText());
-
-        try {
-            patient.setDateOfBirth(DATE_FORMAT.parse(patientNode.get("date_of_birth").asText()));
-            patientCard.setVisitStart(DATE_FORMAT.parse(rootNode.get("visit_start").asText()));
-            patientCard.setVisitEnd(DATE_FORMAT.parse(rootNode.get("visit_end").asText()));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        patient.setDateOfBirth(patientNode.get("date_of_birth").asText());
+        patientCard.setVisitStart(rootNode.get("visit_start").asText());
+        patientCard.setVisitEnd(rootNode.get("visit_end").asText());
 
         patient.setGender(patientNode.get("gender").asText());
         patient.setWeight(patientNode.get("weight").asDouble());

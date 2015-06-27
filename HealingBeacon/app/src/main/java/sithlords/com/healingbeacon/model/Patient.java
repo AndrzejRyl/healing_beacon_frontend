@@ -1,7 +1,6 @@
 package sithlords.com.healingbeacon.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @author FleenMobile at 2015-06-27
@@ -11,7 +10,7 @@ public class Patient implements Serializable {
     private String firstName;
     private String lastName;
     private String photoUrl;
-    private Date dateOfBirth;
+    private String dateOfBirth;
     private String gender;
     private Double weight;
     private Double height;
@@ -21,7 +20,7 @@ public class Patient implements Serializable {
     }
 
     public Patient(long id, String firstName, String lastName, String photoUrl,
-                   Date dateOfBirth, String gender, Double weight, Double height) {
+                   String dateOfBirth, String gender, Double weight, Double height) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -64,11 +63,11 @@ public class Patient implements Serializable {
         return photoUrl;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -82,5 +81,17 @@ public class Patient implements Serializable {
 
     public void setHeight(Double height) {
         this.height = height;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public Double getHeight() {
+        return height;
     }
 }
