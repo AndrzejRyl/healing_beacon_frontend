@@ -26,6 +26,6 @@ public class LaboratoryTestsResultsActivity extends ActionBarActivity {
 
         final List<Test> testResults = groupedTests.getTestsForType(selectedTestsType);
 
-        findViewById(R.id.test)
+        findViewById(R.id.test);
     }
 }
