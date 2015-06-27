@@ -40,6 +40,10 @@
             android:name=".patients.DashboardActivity"
             android:label="@string/title_activity_dashboard" >
         </activity>
+        <activity
+            android:name=".patients.PatientTemperatureActivity"
+            android:label="@string/title_activity_patient_temperature" >
+        </activity>
     </application>
 
 </manifest>

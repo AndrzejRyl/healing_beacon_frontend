@@ -6,4 +6,5 @@
     <string name="title_activity_beacon_monitor">BeaconMonitorActivity</string>
     <string name="title_activity_patients_in_range">PatientsInRange</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_activity_patient_temperature">PatientTemperatureActivity</string>
 </resources>
