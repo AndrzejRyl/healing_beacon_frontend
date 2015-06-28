@@ -1,10 +1,12 @@
 package sithlords.com.healingbeacon.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.io.Serializable;
 
-/**
- * @author FleenMobile at 2015-06-27
- */
+import sithlords.com.healingbeacon.rest.TestSerializer;
+
+@JsonSerialize(using = TestSerializer.class)
 public class Test implements Serializable {
     private String takenTime;
     private String testType;

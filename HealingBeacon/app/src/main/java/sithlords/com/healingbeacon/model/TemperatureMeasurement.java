@@ -1,11 +1,13 @@
 package sithlords.com.healingbeacon.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author FleenMobile at 2015-06-27
- */
+import sithlords.com.healingbeacon.rest.TemperatureMeasurementSerializer;
+
+@JsonSerialize(using = TemperatureMeasurementSerializer.class)
 public class TemperatureMeasurement implements Serializable,Comparable {
     private Date measurementTime;
     private double degreeCelcius;
