@@ -5,12 +5,9 @@ import android.util.Log;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
-
-import static com.google.common.collect.Maps.newHashMap;
 
 public class AddResultTask extends AsyncTask<Object, Void, Void> {
 
@@ -25,9 +22,9 @@ public class AddResultTask extends AsyncTask<Object, Void, Void> {
 
             HttpHeaders requestHeaders = new HttpHeaders();
             requestHeaders.setContentType(MediaType.APPLICATION_JSON);
+            requestHeaders.set("Connection", "Close");
             HttpEntity<Object> httpEntity = new HttpEntity<>(params[2], requestHeaders);
-            restTemplate.exchange(ENDPOINT + "/beacons/" + params[0] + "/patient_card/" + params[1],
-                    HttpMethod.POST, httpEntity, Void.class);
+            restTemplate.postForEntity(ENDPOINT + "/beacons/" + params[0] + "/patient_card/" + params[1], httpEntity, Void.class);
         } catch (Exception e) {
             Log.e("[AddResultTask]", e.getMessage(), e);
         }

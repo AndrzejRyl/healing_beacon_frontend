@@ -7,15 +7,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="3">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:textSize="20sp"
-            android:text="DATE"/>
+        android:weightSum="2">
 
         <TextView
             android:layout_width="0dp"
@@ -39,13 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/add_dialog_info"
         android:orientation="horizontal"
-        android:weightSum="3">
-
-        <EditText
-            android:id="@+id/dialog_time"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+        android:weightSum="2">
 
         <EditText
             android:id="@+id/dialog_diastole"
