@@ -16,7 +16,8 @@
         android:layout_weight="0.3"
         android:text="12-01-2015"
         android:gravity="center"
-        android:textSize="10dp" />
+        android:textSize="10dp"
+        android:layout_gravity="center" />
 
     <TextView
         android:id="@+id/testResult"
@@ -25,7 +26,8 @@
         android:text="Smells bad, need more tests"
         android:paddingLeft="10sp"
         android:layout_weight="0.7"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:layout_gravity="center" />
 
 
 </LinearLayout>
