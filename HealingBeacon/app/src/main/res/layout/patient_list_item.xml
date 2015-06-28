@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_weight="0.3"
-        android:src="@mipmap/test"
+        android:src="@mipmap/ic_launcher"
         android:paddingLeft="15dp"
         android:paddingRight="15dp" />
 
