@@ -1,11 +1,13 @@
 package sithlords.com.healingbeacon.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author FleenMobile at 2015-06-27
- */
+import sithlords.com.healingbeacon.rest.BloodMeasurementSerializer;
+
+@JsonSerialize(using = BloodMeasurementSerializer.class)
 public class BloodMeasurement implements Serializable {
     private Date measurementTime;
     private int systole;

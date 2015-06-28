@@ -1,7 +1,12 @@
 package sithlords.com.healingbeacon.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.io.Serializable;
 
+import sithlords.com.healingbeacon.rest.PrescribedDrugSerializer;
+
+@JsonSerialize(using = PrescribedDrugSerializer.class)
 public class PrescribedDrug implements Serializable {
     private String drugName;
     private Integer intervalHours;
