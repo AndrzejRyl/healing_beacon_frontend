@@ -66,8 +66,11 @@
             android:name=".HistoryActivity"
             android:label="@string/title_activity_history" >
         </activity>
+        <activity android:name=".patients.BloodPressureActivity" >
+        </activity>
         <activity
-            android:name=".patients.BloodPressureActivity" >
+            android:name=".NotesActivity"
+            android:label="@string/title_activity_notes" >
         </activity>
     </application>
 

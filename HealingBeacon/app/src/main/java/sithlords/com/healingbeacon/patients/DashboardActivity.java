@@ -19,6 +19,7 @@ import java.util.Locale;
 
 import sithlords.com.healingbeacon.HistoryActivity;
 import sithlords.com.healingbeacon.MedicalResearchActivity;
+import sithlords.com.healingbeacon.NotesActivity;
 import sithlords.com.healingbeacon.PrescribedDrugsActivity;
 import sithlords.com.healingbeacon.R;
 import sithlords.com.healingbeacon.model.Patient;
@@ -135,6 +136,8 @@ public class DashboardActivity extends ActionBarActivity {
     }
 
     public void notes(View v) {
-
+        Intent i = new Intent(this,NotesActivity.class);
+        i.putExtra("BEACON ID", patientCard.getPatient().getBeaconID());
+        startActivity(i);
     }
 }
