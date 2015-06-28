@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.WindowManager;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -16,6 +17,8 @@ import sithlords.com.healingbeacon.patients.PatientsInRange;
 
 public class LaboratoryTestsResultsActivity extends ActionBarActivity {
 
+    TextView titleTV;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,13 +26,16 @@ public class LaboratoryTestsResultsActivity extends ActionBarActivity {
         getWindow().setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_patients_in_range);
 
         setContentView(R.layout.activity_laboratory_tests);
 
         final PatientCard patientCard = (PatientCard) getIntent().getExtras().get(PatientsInRange.PATIENT);
         final GroupedTests groupedTests = new GroupedTests(patientCard.getTests());
         final String selectedTestsType = (String) getIntent().getExtras().get(LaboratoryTestsActivity.SELECTED_TEST_TYPE);
+
+        // Set specific title
+        titleTV = (TextView)findViewById(R.id.laboratoryTestsListTextView);
+        titleTV.setText(selectedTestsType.toUpperCase() + " TESTS");
 
         final List<Test> testResults = groupedTests.getTestsForType(selectedTestsType);
 

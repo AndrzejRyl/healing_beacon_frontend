@@ -10,11 +10,11 @@
     tools:context="sithlords.com.healingbeacon.LaboratoryTestsActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/laboratoryTestsListTextView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="LABORATORY TESTS"
         android:textSize="25dp"
+        android:text="LABORATORY TESTS"
         android:layout_marginBottom="5dp"
         android:padding="5dp"
         android:background="#ff6464"

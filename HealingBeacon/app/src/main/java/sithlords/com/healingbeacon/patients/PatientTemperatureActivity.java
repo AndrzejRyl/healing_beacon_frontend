@@ -11,6 +11,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.software.shell.fab.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.Collections;
@@ -26,6 +27,7 @@ import static com.google.common.collect.Lists.newArrayList;
 public class PatientTemperatureActivity extends ActionBarActivity {
 
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MM-dd", Locale.US);
+    private FloatingActionButton button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,11 @@ public class PatientTemperatureActivity extends ActionBarActivity {
         PatientCard patientCard = (PatientCard) getIntent().getExtras().get(PatientsInRange.PATIENT);
 
         LineChart chart = (LineChart) findViewById(R.id.chart);
+        // Style action button
+        button = (FloatingActionButton)findViewById(R.id.action_button);
+        button.setImageResource(R.drawable.fab_plus_icon);
+        button.setButtonColor(getResources().getColor(android.R.color.holo_red_dark
+        ));
 
         List<Entry> entries = newArrayList();
         List<TemperatureMeasurement> measurements = patientCard.getTemperatureMeasurements();
