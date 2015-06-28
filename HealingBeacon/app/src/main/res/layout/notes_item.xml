@@ -8,11 +8,15 @@
         android:id="@+id/notes_item_first"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:text="To jest notatka testowa skurwysynu a jak Ci sie nie podoba to jebac"
+        android:textSize="10dp" />
 
     <TextView
         android:id="@+id/notes_item_second"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:text="To jest notatka testowa skurwysynu a jak Ci sie nie podoba to jebac"
+        android:textSize="10dp" />
 </LinearLayout>
