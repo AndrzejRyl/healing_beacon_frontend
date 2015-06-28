@@ -3,10 +3,12 @@ package sithlords.com.healingbeacon.rest;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
-
-import sithlords.com.healingbeacon.model.PatientCard;
 
 import static com.google.common.collect.Maps.newHashMap;
 
@@ -21,7 +23,11 @@ public class AddResultTask extends AsyncTask<Object, Void, Void> {
 
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
-            restTemplate.postForObject(ENDPOINT + "/beacons/" + params[0] + "/patient_card/" + params[1], params[2], Void.class, newHashMap());
+            HttpHeaders requestHeaders = new HttpHeaders();
+            requestHeaders.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<Object> httpEntity = new HttpEntity<>(params[2], requestHeaders);
+            restTemplate.exchange(ENDPOINT + "/beacons/" + params[0] + "/patient_card/" + params[1],
+                    HttpMethod.POST, httpEntity, Void.class);
         } catch (Exception e) {
             Log.e("[AddResultTask]", e.getMessage(), e);
         }
