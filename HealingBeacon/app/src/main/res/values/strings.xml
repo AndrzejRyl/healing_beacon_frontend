@@ -8,5 +8,10 @@
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="title_activity_patient_temperature">PatientTemperatureActivity</string>
     <string name="title_activity_prescribed_drugs">PrescribedDrugsActivity</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="title_activity_laboratory_tests">LaboratoryTestsActivity</string>
+    <string name="title_activity_laboratory_tests_results">LaboratoryTestsResults</string>
+    <string name="title_activity_history">HistoryActivity</string>
+    <string name="title_activity_notes">NotesActivity</string>
 
 </resources>

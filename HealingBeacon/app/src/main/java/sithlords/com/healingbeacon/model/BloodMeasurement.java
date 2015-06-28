@@ -1,12 +1,14 @@
 package sithlords.com.healingbeacon.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author FleenMobile at 2015-06-27
- */
-public class BloodMeasurement implements Serializable {
+import sithlords.com.healingbeacon.rest.BloodMeasurementSerializer;
+
+@JsonSerialize(using = BloodMeasurementSerializer.class)
+public class BloodMeasurement implements Serializable, Comparable {
     private Date measurementTime;
     private int systole;
     private int diastole;
@@ -33,5 +35,10 @@ public class BloodMeasurement implements Serializable {
 
     public void setDiastole(int diastole) {
         this.diastole = diastole;
+    }
+
+    @Override
+    public int compareTo(Object another) {
+        return measurementTime.compareTo(((BloodMeasurement)another).getMeasurementTime());
     }
 }

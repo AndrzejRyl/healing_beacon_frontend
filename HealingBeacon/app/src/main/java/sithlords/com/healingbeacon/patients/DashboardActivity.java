@@ -17,7 +17,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import sithlords.com.healingbeacon.HistoryActivity;
 import sithlords.com.healingbeacon.MedicalResearchActivity;
+import sithlords.com.healingbeacon.NotesActivity;
 import sithlords.com.healingbeacon.PrescribedDrugsActivity;
 import sithlords.com.healingbeacon.R;
 import sithlords.com.healingbeacon.model.Patient;
@@ -128,8 +130,14 @@ public class DashboardActivity extends ActionBarActivity {
     }
 
     public void history(View v) {
-        Intent i = new Intent(this, PatientTemperatureActivity.class);
-        i.putExtra(PatientsInRange.PATIENT, patientCard);
+        Intent i = new Intent(this, HistoryActivity.class);
+        i.putExtra("BEACON ID", patientCard.getPatient().getBeaconID());
+        startActivity(i);
+    }
+
+    public void notes(View v) {
+        Intent i = new Intent(this,NotesActivity.class);
+        i.putExtra("BEACON ID", patientCard.getPatient().getBeaconID());
         startActivity(i);
     }
 }

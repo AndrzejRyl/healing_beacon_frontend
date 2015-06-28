@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 import sithlords.com.healingbeacon.adapter.SimpleListAdapter;
 import sithlords.com.healingbeacon.model.PatientCard;
+import sithlords.com.healingbeacon.patients.BloodPressureActivity;
 import sithlords.com.healingbeacon.patients.PatientTemperatureActivity;
 import sithlords.com.healingbeacon.patients.PatientsInRange;
 
@@ -24,6 +26,12 @@ public class MedicalResearchActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_patients_in_range);
+
         setContentView(R.layout.activity_medical_research);
 
         patientCard = (PatientCard) getIntent().getExtras().get(PatientsInRange.PATIENT);
@@ -57,13 +65,13 @@ public class MedicalResearchActivity extends Activity {
     }
 
     private void startBloodPressureActivity() {
-        final Intent intent = new Intent(this, PatientTemperatureActivity.class);
+        final Intent intent = new Intent(this, BloodPressureActivity.class);
         intent.putExtra(PatientsInRange.PATIENT, patientCard);
         startActivity(intent);
     }
 
     private void startLaboratoryTestsActivity() {
-        final Intent intent = new Intent(this, PatientTemperatureActivity.class);
+        final Intent intent = new Intent(this, LaboratoryTestsActivity.class);
         intent.putExtra(PatientsInRange.PATIENT, patientCard);
         startActivity(intent);
     }

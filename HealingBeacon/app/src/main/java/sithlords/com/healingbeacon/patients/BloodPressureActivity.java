@@ -19,14 +19,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
-import sithlords.com.healingbeacon.AddTemperatureDialog;
+import sithlords.com.healingbeacon.AddBloodPressureDialog;
 import sithlords.com.healingbeacon.R;
+import sithlords.com.healingbeacon.model.BloodMeasurement;
 import sithlords.com.healingbeacon.model.PatientCard;
-import sithlords.com.healingbeacon.model.TemperatureMeasurement;
 
 import static com.google.common.collect.Lists.newArrayList;
 
-public class PatientTemperatureActivity extends ActionBarActivity {
+public class BloodPressureActivity extends ActionBarActivity {
 
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MM-dd", Locale.US);
     private FloatingActionButton button;
@@ -50,7 +50,6 @@ public class PatientTemperatureActivity extends ActionBarActivity {
         button = (FloatingActionButton)findViewById(R.id.action_button);
         button.setImageResource(R.drawable.fab_plus_icon);
         button.setButtonColor(getResources().getColor(android.R.color.holo_red_dark));
-        redrawChart();
 
     }
 
@@ -77,35 +76,42 @@ public class PatientTemperatureActivity extends ActionBarActivity {
     }
 
     public void addData(View v) {
-        AddTemperatureDialog addTempDialog = AddTemperatureDialog.newInstance(this, beaconID, new OnDialogFinished() {
+        AddBloodPressureDialog addBloodDialog = AddBloodPressureDialog.newInstance(this, beaconID, new OnDialogFinished() {
             @Override
             public void onFinished(Object result) {
-                final TemperatureMeasurement temperatureMeasurement = (TemperatureMeasurement) result;
-                patientCard.getTemperatureMeasurements().add(temperatureMeasurement);
+                final BloodMeasurement bloodMeasurement = (BloodMeasurement) result;
+                patientCard.getBloodPressureMeasurements().add(bloodMeasurement);
                 redrawChart();
             }
         });
-        addTempDialog.show(getFragmentManager(), "TAG");
+        addBloodDialog.show(getFragmentManager(), "TAG");
     }
 
     private void redrawChart() {
-        List<Entry> entries = newArrayList();
-        List<TemperatureMeasurement> measurements = patientCard.getTemperatureMeasurements();
+        LineChart chart = (LineChart) findViewById(R.id.chart);
+
+        List<Entry> diastoleEntries = newArrayList();
+        List<Entry> systoleEntries = newArrayList();
+        List<BloodMeasurement> measurements = patientCard.getBloodPressureMeasurements();
         Collections.sort(measurements);
         List<String> xVals = newArrayList();
         int i = 0;
-        for (TemperatureMeasurement temp : measurements) {
-            Entry entry = new Entry((float) temp.getDegreeCelcius(), i++);
-            entries.add(entry);
+        for (BloodMeasurement temp : measurements) {
+            Entry entry = new Entry(temp.getDiastole(), i++);
+            diastoleEntries.add(entry);
+            entry = new Entry(temp.getSystole(), i++);
+            systoleEntries.add(entry);
             xVals.add(DATE_FORMAT.format(temp.getMeasurementTime()));
         }
 
-        LineDataSet set = new LineDataSet(entries, "Temperatures");
-        set.setAxisDependency(YAxis.AxisDependency.LEFT);
-        set.setCircleColors(new int[]{R.color.red});
-        LineChart chart = (LineChart) findViewById(R.id.chart);
+        LineDataSet diastoleSet = new LineDataSet(diastoleEntries, "Diastole");
+        LineDataSet systoleSet = new LineDataSet(systoleEntries, "Systole");
+        diastoleSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+        diastoleSet.setCircleColors(new int[]{R.color.red});
+        systoleSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+        systoleSet.setCircleColors(new int[]{R.color.red});
 
-        List<LineDataSet> sets = newArrayList(set);
+        List<LineDataSet> sets = newArrayList(diastoleSet, systoleSet);
         LineData data = new LineData(xVals, sets);
         chart.setData(data);
         chart.invalidate();

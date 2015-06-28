@@ -68,8 +68,8 @@ public class PatientListAdapter extends ArrayAdapter implements PatientCardRespo
         // Set data
         holder.patientName.setText(patient.getFirstName());
         holder.patientSurname.setText(patient.getLastName());
-        new DownloadImageTask(holder.patientPic)
-                .execute(patient.getPhotoUrl());
+        //new DownloadImageTask(holder.patientPic)
+          //      .execute(patient.getPhotoUrl());
 
         // Allow user to click on whole row so as to open specific data about the patient
         final View finalRow = row;
