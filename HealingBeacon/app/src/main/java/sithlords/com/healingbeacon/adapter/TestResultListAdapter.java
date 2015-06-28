@@ -25,11 +25,9 @@ public class TestResultListAdapter extends ArrayAdapter<Test> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.test_result_item, parent, false);
         }
 
-        final TextView testNameField = (TextView) convertView.findViewById(R.id.testType);
         final TextView testTimeTakenField = (TextView) convertView.findViewById(R.id.testTimeTaken);
         final TextView testResultField = (TextView) convertView.findViewById(R.id.testResult);
 
-        testNameField.setText(testResult.getTestType());
         testTimeTakenField.setText(testTimeString(testResult));
         testResultField.setText(testResult.getResult());
 
@@ -37,6 +35,6 @@ public class TestResultListAdapter extends ArrayAdapter<Test> {
     }
 
     private String testTimeString(Test testResult) {
-        return testResult.getTakenTime();
+        return testResult.getTakenTime().substring(0,10);
     }
 }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -18,6 +19,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+import sithlords.com.healingbeacon.AddTemperatureDialog;
 import sithlords.com.healingbeacon.R;
 import sithlords.com.healingbeacon.model.PatientCard;
 import sithlords.com.healingbeacon.model.TemperatureMeasurement;
@@ -28,6 +30,7 @@ public class PatientTemperatureActivity extends ActionBarActivity {
 
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MM-dd", Locale.US);
     private FloatingActionButton button;
+    private int beaconID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +43,13 @@ public class PatientTemperatureActivity extends ActionBarActivity {
         setContentView(R.layout.activity_patient_temperature);
 
         PatientCard patientCard = (PatientCard) getIntent().getExtras().get(PatientsInRange.PATIENT);
+        beaconID = patientCard.getPatient().getBeaconID();
 
         LineChart chart = (LineChart) findViewById(R.id.chart);
         // Style action button
         button = (FloatingActionButton)findViewById(R.id.action_button);
         button.setImageResource(R.drawable.fab_plus_icon);
-        button.setButtonColor(getResources().getColor(android.R.color.holo_red_dark
-        ));
+        button.setButtonColor(getResources().getColor(android.R.color.holo_red_dark));
 
         List<Entry> entries = newArrayList();
         List<TemperatureMeasurement> measurements = patientCard.getTemperatureMeasurements();
@@ -89,5 +92,11 @@ public class PatientTemperatureActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addData(View v) {
+        AddTemperatureDialog addTempDialog = AddTemperatureDialog.newInstance(this, beaconID);
+        addTempDialog.show(getFragmentManager(), "TAG");
+
     }
 }
