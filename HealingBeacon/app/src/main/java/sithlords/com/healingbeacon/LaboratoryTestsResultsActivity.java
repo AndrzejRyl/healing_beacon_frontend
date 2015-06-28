@@ -2,6 +2,7 @@ package sithlords.com.healingbeacon;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.WindowManager;
 import android.widget.ListView;
 
 import java.util.List;
@@ -18,6 +19,12 @@ public class LaboratoryTestsResultsActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_patients_in_range);
+
         setContentView(R.layout.activity_laboratory_tests);
 
         final PatientCard patientCard = (PatientCard) getIntent().getExtras().get(PatientsInRange.PATIENT);
