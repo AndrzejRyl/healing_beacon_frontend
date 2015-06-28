@@ -4,12 +4,20 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:keepScreenOn="true"
     tools:context="sithlords.com.healingbeacon.PrescribedDrugsActivity">
+
+    <TextView
+        android:id="@+id/prescribed_drugs_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Prescribed drugs"/>
 
     <ListView
         android:id="@+id/prescribedDrugsList"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:layout_below="@id/prescribed_drugs_title">
     </ListView>
 
 </RelativeLayout>

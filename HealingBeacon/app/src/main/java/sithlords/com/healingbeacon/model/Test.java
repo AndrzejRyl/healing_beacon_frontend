@@ -12,12 +12,6 @@ public class Test implements Serializable {
     private String testType;
     private String result;
 
-    public Test(String takenTime, String testType, String result) {
-        this.takenTime = takenTime;
-        this.testType = testType;
-        this.result = result;
-    }
-
     public String getTakenTime() {
         return takenTime;
     }

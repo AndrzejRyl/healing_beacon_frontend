@@ -63,7 +63,7 @@ public class MedicalResearchActivity extends Activity {
     }
 
     private void startLaboratoryTestsActivity() {
-        final Intent intent = new Intent(this, PatientTemperatureActivity.class);
+        final Intent intent = new Intent(this, LaboratoryTestsActivity.class);
         intent.putExtra(PatientsInRange.PATIENT, patientCard);
         startActivity(intent);
     }

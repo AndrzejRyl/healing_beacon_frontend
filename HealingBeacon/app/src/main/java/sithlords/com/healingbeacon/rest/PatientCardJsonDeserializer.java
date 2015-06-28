@@ -17,6 +17,7 @@ import sithlords.com.healingbeacon.model.Patient;
 import sithlords.com.healingbeacon.model.PatientCard;
 import sithlords.com.healingbeacon.model.PrescribedDrug;
 import sithlords.com.healingbeacon.model.TemperatureMeasurement;
+import sithlords.com.healingbeacon.model.Test;
 
 import static com.google.common.collect.Lists.newArrayList;
 
@@ -108,6 +109,21 @@ public class PatientCardJsonDeserializer extends JsonDeserializer<PatientCard> {
             }
         }
         patientCard.setDrugDoses(drugDoses);
+
+        List<Test> tests = newArrayList();
+        JsonNode testNodes = rootNode.get("tests");
+        if (drugNodes.isArray()) {
+            for (JsonNode testNode : testNodes) {
+                Test test = new Test();
+
+                test.setResult(testNode.get("result").asText());
+                test.setTestType(testNode.get("test_type").asText());
+                test.setTakenTime(testNode.get("taken_time").asText());
+                tests.add(test);
+            }
+        }
+        patientCard.setTests(tests);
+
 
         return patientCard;
     }

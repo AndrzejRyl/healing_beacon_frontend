@@ -7,14 +7,21 @@
     android:paddingBottom="10sp"
     android:paddingTop="10sp">
 
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:id="@+id/imageView"
+        android:layout_weight="0.2"
+        android:src="@mipmap/pill" />
+
     <TextView
         android:id="@+id/prescribedDrugName"
         android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:textSize="25sp"
         android:layout_marginBottom="2sp"
-        android:text="Prozac"
-        android:layout_weight="0.7"
+        android:text="PROZAC"
+        android:layout_weight="0.5"
         android:gravity="center" />
 
     <LinearLayout
@@ -26,19 +33,21 @@
         android:paddingRight="5sp">
 
         <TextView
-            android:id="@+id/intervalHours"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" android:text="Every 5 hours"
-            android:layout_weight="0.5"
-            android:gravity="end" />
-
-        <TextView
             android:id="@+id/doseMilligrams"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
 
-            android:gravity="end" android:text="120mg"
-            android:layout_weight="0.5" />
+            android:gravity="center" android:text="120mg"
+            android:layout_weight="0.5"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/intervalHours"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" android:text="Every 5 hours"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:textSize="10dp" />
 
     </LinearLayout>
 

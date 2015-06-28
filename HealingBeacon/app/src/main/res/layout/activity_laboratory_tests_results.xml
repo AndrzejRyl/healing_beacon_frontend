@@ -8,18 +8,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:keepScreenOn="true"
-    tools:context="sithlords.com.healingbeacon.MedicalResearchActivity">
+    tools:context="sithlords.com.healingbeacon.LaboratoryTestsResultsActivity">
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="2sp"
-        android:text="Medical Research"
+        android:text="Results"
         android:textSize="25sp" />
 
     <ListView
-        android:id="@+id/medicalResearchList"
+        android:id="@+id/laboratoryTestsResultsList"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"></ListView>
+        android:layout_height="fill_parent"/>
 
 </LinearLayout>
