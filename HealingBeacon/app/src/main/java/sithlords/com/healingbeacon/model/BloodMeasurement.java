@@ -8,7 +8,7 @@ import java.util.Date;
 import sithlords.com.healingbeacon.rest.BloodMeasurementSerializer;
 
 @JsonSerialize(using = BloodMeasurementSerializer.class)
-public class BloodMeasurement implements Serializable {
+public class BloodMeasurement implements Serializable, Comparable {
     private Date measurementTime;
     private int systole;
     private int diastole;
@@ -35,5 +35,10 @@ public class BloodMeasurement implements Serializable {
 
     public void setDiastole(int diastole) {
         this.diastole = diastole;
+    }
+
+    @Override
+    public int compareTo(Object another) {
+        return measurementTime.compareTo(((BloodMeasurement)another).getMeasurementTime());
     }
 }

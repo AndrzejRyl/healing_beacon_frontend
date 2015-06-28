@@ -13,6 +13,7 @@ import java.util.List;
 
 import sithlords.com.healingbeacon.adapter.SimpleListAdapter;
 import sithlords.com.healingbeacon.model.PatientCard;
+import sithlords.com.healingbeacon.patients.BloodPressureActivity;
 import sithlords.com.healingbeacon.patients.PatientTemperatureActivity;
 import sithlords.com.healingbeacon.patients.PatientsInRange;
 
@@ -64,7 +65,7 @@ public class MedicalResearchActivity extends Activity {
     }
 
     private void startBloodPressureActivity() {
-        final Intent intent = new Intent(this, PatientTemperatureActivity.class);
+        final Intent intent = new Intent(this, BloodPressureActivity.class);
         intent.putExtra(PatientsInRange.PATIENT, patientCard);
         startActivity(intent);
     }
