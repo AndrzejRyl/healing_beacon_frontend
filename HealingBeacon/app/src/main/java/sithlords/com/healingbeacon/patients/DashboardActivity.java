@@ -133,4 +133,8 @@ public class DashboardActivity extends ActionBarActivity {
         i.putExtra("BEACON ID", patientCard.getPatient().getBeaconID());
         startActivity(i);
     }
+
+    public void notes(View v) {
+
+    }
 }

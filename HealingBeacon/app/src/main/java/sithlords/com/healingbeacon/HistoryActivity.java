@@ -35,6 +35,16 @@ public class HistoryActivity extends ActionBarActivity {
         // Initialize static collection with all data 'cause ERYK SUCKS !!! xD
         histories = newHashMap();
         List<History> list = new ArrayList<>();
+        list.add(new History("2014-02-11", "Got registered 1st time"));
+        list.add(new History("2014-04-18", "Sprained an ankle"));
+        list.add(new History("2014-04-19", "Control visit"));
+        list.add(new History("2014-04-25", "Second control visit"));
+        list.add(new History("2014-05-11", "Ankle totally recovered"));
+        list.add(new History("2014-05-12", "Food poisoning"));
+        list.add(new History("2014-06-01", "Caught a flu"));
+        list.add(new History("2014-06-04", "Flu turned into pneumonia"));
+        list.add(new History("2014-06-10", "State of patient got worse"));
+        list.add(new History("2014-06-11", "Patient died"));
         list.add(new History("2015-02-11", "Broke a leg"));
         list.add(new History("2015-04-18", "Caught a flu"));
         list.add(new History("2015-04-19", "Leg totally recovered"));
