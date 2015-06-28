@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -25,13 +24,12 @@ import sithlords.com.healingbeacon.service.ExternalServiceImpl;
  * @author FleenMobile at 2015-06-28
  */
 public class AddTemperatureDialog extends DialogFragment implements PatientCardResponseListener {
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
     private static PatientTemperatureActivity mActivity;
     private static int mBeaconID;
 
     private View view;
-    private EditText timeTV;
     private EditText tempTV;
     private TextView errorTV;
 
@@ -77,7 +75,6 @@ public class AddTemperatureDialog extends DialogFragment implements PatientCardR
                 R.layout.add_temperature_dialog, null));
 
         // Find views
-        timeTV = (EditText) view.findViewById(R.id.dialog_time);
         tempTV = (EditText) view
                 .findViewById(R.id.dialog_temp);
         errorTV = (TextView)view.findViewById(R.id.dialog_error);
@@ -91,16 +88,9 @@ public class AddTemperatureDialog extends DialogFragment implements PatientCardR
     }
 
     private boolean acceptChanges() {
-        String dateString = timeTV.getText().toString();
         String temp = tempTV.getText().toString();
-        Date date;
+        Date date = new Date();
 
-        // Try to format date
-        try {
-            date = DATE_FORMAT.parse(dateString);
-        } catch (ParseException e) {
-            return false;
-        }
 
         // Save it in DB
         ExternalServiceImpl API = new ExternalServiceImpl(this);

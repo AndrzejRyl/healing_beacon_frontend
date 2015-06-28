@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -25,13 +24,12 @@ import sithlords.com.healingbeacon.service.ExternalServiceImpl;
  * @author FleenMobile at 2015-06-28
  */
 public class AddBloodPressureDialog extends DialogFragment implements PatientCardResponseListener {
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
     private static BloodPressureActivity mActivity;
     private static int mBeaconID;
 
     private View view;
-    private EditText timeTV;
     private EditText diastoleTV;
     private EditText systoleTV;
     private TextView errorTV;
@@ -78,7 +76,6 @@ public class AddBloodPressureDialog extends DialogFragment implements PatientCar
                 R.layout.add_blood_dialog, null));
 
         // Find views
-        timeTV = (EditText) view.findViewById(R.id.dialog_time);
         diastoleTV = (EditText) view
                 .findViewById(R.id.dialog_diastole);
         systoleTV = (EditText) view
@@ -90,21 +87,14 @@ public class AddBloodPressureDialog extends DialogFragment implements PatientCar
 
     private void displayError() {
         // User has fucked up with date so we have to tell him
-        errorTV.setText("Date is in the wrong format. Should be yyyy-MM-dd'T'HH:mm:ss.SSS'Z'. Good luck ;)");
+        errorTV.setText("Date is in the wrong format. Should be yyyy-MM-dd");
     }
 
     private boolean acceptChanges() {
-        String dateString = timeTV.getText().toString();
         String diastole = diastoleTV.getText().toString();
         String systole = systoleTV.getText().toString();
-        Date date;
+        Date date = new Date();
 
-        // Try to format date
-        try {
-            date = DATE_FORMAT.parse(dateString);
-        } catch (ParseException e) {
-            return false;
-        }
 
         // Save it in DB
         ExternalServiceImpl API = new ExternalServiceImpl(this);
