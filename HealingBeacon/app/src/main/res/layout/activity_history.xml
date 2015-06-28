@@ -6,11 +6,25 @@
     android:keepScreenOn="true"
     tools:context="sithlords.com.healingbeacon.HistoryActivity">
 
+    <TextView
+        android:id="@+id/prescribed_drugs_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="NOTES"
+        android:textSize="25dp"
+        android:layout_marginBottom="5dp"
+        android:padding="5dp"
+        android:background="#ff6464"
+        android:textColor="#fff"
+        android:gravity="center" />
+
     <ListView
         android:id="@+id/history_list_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@android:color/transparent">
+        android:background="@android:color/transparent"
+        android:divider="@null"
+        android:dividerHeight="0dp">
     </ListView>
 
 </RelativeLayout>
