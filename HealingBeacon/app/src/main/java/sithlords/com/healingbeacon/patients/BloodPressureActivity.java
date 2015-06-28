@@ -31,6 +31,7 @@ public class BloodPressureActivity extends ActionBarActivity {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MM-dd", Locale.US);
     private FloatingActionButton button;
     private int beaconID;
+    private PatientCard patientCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +43,52 @@ public class BloodPressureActivity extends ActionBarActivity {
 
         setContentView(R.layout.activity_patient_temperature);
 
-        PatientCard patientCard = (PatientCard) getIntent().getExtras().get(PatientsInRange.PATIENT);
+        patientCard = (PatientCard) getIntent().getExtras().get(PatientsInRange.PATIENT);
         beaconID = patientCard.getPatient().getBeaconID();
 
-        LineChart chart = (LineChart) findViewById(R.id.chart);
         // Style action button
         button = (FloatingActionButton)findViewById(R.id.action_button);
         button.setImageResource(R.drawable.fab_plus_icon);
         button.setButtonColor(getResources().getColor(android.R.color.holo_red_dark));
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_patient_temperature, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void addData(View v) {
+        AddBloodPressureDialog addBloodDialog = AddBloodPressureDialog.newInstance(this, beaconID, new OnDialogFinished() {
+            @Override
+            public void onFinished(Object result) {
+                final BloodMeasurement bloodMeasurement = (BloodMeasurement) result;
+                patientCard.getBloodPressureMeasurements().add(bloodMeasurement);
+                redrawChart();
+            }
+        });
+        addBloodDialog.show(getFragmentManager(), "TAG");
+    }
+
+    private void redrawChart() {
+        LineChart chart = (LineChart) findViewById(R.id.chart);
 
         List<Entry> diastoleEntries = newArrayList();
         List<Entry> systoleEntries = newArrayList();
@@ -76,32 +115,5 @@ public class BloodPressureActivity extends ActionBarActivity {
         LineData data = new LineData(xVals, sets);
         chart.setData(data);
         chart.invalidate();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_patient_temperature, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void addData(View v) {
-        AddBloodPressureDialog addBloodDialog = AddBloodPressureDialog.newInstance(this, beaconID);
-        addBloodDialog.show(getFragmentManager(), "TAG");
     }
 }

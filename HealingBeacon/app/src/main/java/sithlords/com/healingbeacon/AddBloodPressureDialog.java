@@ -17,6 +17,7 @@ import java.util.Locale;
 import sithlords.com.healingbeacon.model.BloodMeasurement;
 import sithlords.com.healingbeacon.model.PatientCard;
 import sithlords.com.healingbeacon.patients.BloodPressureActivity;
+import sithlords.com.healingbeacon.patients.OnDialogFinished;
 import sithlords.com.healingbeacon.rest.PatientCardResponseListener;
 import sithlords.com.healingbeacon.service.ExternalServiceImpl;
 
@@ -34,8 +35,14 @@ public class AddBloodPressureDialog extends DialogFragment implements PatientCar
     private EditText systoleTV;
     private TextView errorTV;
 
+    private OnDialogFinished callback;
+
+    public void setCallback(OnDialogFinished callback) {
+        this.callback = callback;
+    }
+
     public static AddBloodPressureDialog newInstance(BloodPressureActivity instance,
-                                                       int beaconID) {
+                                                       int beaconID, OnDialogFinished callback) {
 
         // Get a holder to host activity
         mActivity = instance;
@@ -43,6 +50,7 @@ public class AddBloodPressureDialog extends DialogFragment implements PatientCar
 
         // Start a dialog
         AddBloodPressureDialog dialog = new AddBloodPressureDialog();
+        dialog.setCallback(callback);
 
         return dialog;
     }
@@ -102,8 +110,7 @@ public class AddBloodPressureDialog extends DialogFragment implements PatientCar
         measurement.setDiastole(Integer.parseInt(diastole));
         measurement.setSystole(Integer.parseInt(systole));
         measurement.setMeasurementTime(date);
-        API.addBloodPressureMeasurement(mBeaconID, measurement);
-
+        callback.onFinished(measurement);
         return true;
     }
 

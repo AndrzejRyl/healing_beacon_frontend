@@ -16,6 +16,7 @@ import java.util.Locale;
 
 import sithlords.com.healingbeacon.model.PatientCard;
 import sithlords.com.healingbeacon.model.TemperatureMeasurement;
+import sithlords.com.healingbeacon.patients.OnDialogFinished;
 import sithlords.com.healingbeacon.patients.PatientTemperatureActivity;
 import sithlords.com.healingbeacon.rest.PatientCardResponseListener;
 import sithlords.com.healingbeacon.service.ExternalServiceImpl;
@@ -28,13 +29,16 @@ public class AddTemperatureDialog extends DialogFragment implements PatientCardR
 
     private static PatientTemperatureActivity mActivity;
     private static int mBeaconID;
+    private TemperatureMeasurement result;
 
     private View view;
     private EditText tempTV;
     private TextView errorTV;
 
+    private OnDialogFinished callback;
+
     public static AddTemperatureDialog newInstance(PatientTemperatureActivity instance,
-                                                       int beaconID) {
+                                                   int beaconID, OnDialogFinished callback) {
 
         // Get a holder to host activity
         mActivity = instance;
@@ -42,8 +46,13 @@ public class AddTemperatureDialog extends DialogFragment implements PatientCardR
 
         // Start a dialog
         AddTemperatureDialog dialog = new AddTemperatureDialog();
+        dialog.setCallback(callback);
 
         return dialog;
+    }
+
+    public void setCallback(OnDialogFinished callback) {
+        this.callback = callback;
     }
 
     @Override
@@ -97,7 +106,8 @@ public class AddTemperatureDialog extends DialogFragment implements PatientCardR
         TemperatureMeasurement measurement = new TemperatureMeasurement();
         measurement.setDegreeCelcius(Double.parseDouble(temp));
         measurement.setMeasurementTime(date);
-        API.addTemperatureMeasurement(mBeaconID, measurement);
+
+        callback.onFinished(measurement);
 
         return true;
     }

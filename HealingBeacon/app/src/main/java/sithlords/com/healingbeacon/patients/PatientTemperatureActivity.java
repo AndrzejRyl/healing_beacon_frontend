@@ -31,6 +31,7 @@ public class PatientTemperatureActivity extends ActionBarActivity {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MM-dd", Locale.US);
     private FloatingActionButton button;
     private int beaconID;
+    private PatientCard patientCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,34 +43,15 @@ public class PatientTemperatureActivity extends ActionBarActivity {
 
         setContentView(R.layout.activity_patient_temperature);
 
-        PatientCard patientCard = (PatientCard) getIntent().getExtras().get(PatientsInRange.PATIENT);
+        patientCard = (PatientCard) getIntent().getExtras().get(PatientsInRange.PATIENT);
         beaconID = patientCard.getPatient().getBeaconID();
 
-        LineChart chart = (LineChart) findViewById(R.id.chart);
         // Style action button
         button = (FloatingActionButton)findViewById(R.id.action_button);
         button.setImageResource(R.drawable.fab_plus_icon);
         button.setButtonColor(getResources().getColor(android.R.color.holo_red_dark));
+        redrawChart();
 
-        List<Entry> entries = newArrayList();
-        List<TemperatureMeasurement> measurements = patientCard.getTemperatureMeasurements();
-        Collections.sort(measurements);
-        List<String> xVals = newArrayList();
-        int i = 0;
-        for (TemperatureMeasurement temp : measurements) {
-            Entry entry = new Entry((float) temp.getDegreeCelcius(), i++);
-            entries.add(entry);
-            xVals.add(DATE_FORMAT.format(temp.getMeasurementTime()));
-        }
-
-        LineDataSet set = new LineDataSet(entries, "Temperatures");
-        set.setAxisDependency(YAxis.AxisDependency.LEFT);
-        set.setCircleColors(new int[]{R.color.red});
-
-        List<LineDataSet> sets = newArrayList(set);
-        LineData data = new LineData(xVals, sets);
-        chart.setData(data);
-        chart.invalidate();
     }
 
     @Override
@@ -95,8 +77,37 @@ public class PatientTemperatureActivity extends ActionBarActivity {
     }
 
     public void addData(View v) {
-        AddTemperatureDialog addTempDialog = AddTemperatureDialog.newInstance(this, beaconID);
+        AddTemperatureDialog addTempDialog = AddTemperatureDialog.newInstance(this, beaconID, new OnDialogFinished() {
+            @Override
+            public void onFinished(Object result) {
+                final TemperatureMeasurement temperatureMeasurement = (TemperatureMeasurement) result;
+                patientCard.getTemperatureMeasurements().add(temperatureMeasurement);
+                redrawChart();
+            }
+        });
         addTempDialog.show(getFragmentManager(), "TAG");
+    }
 
+    private void redrawChart() {
+        List<Entry> entries = newArrayList();
+        List<TemperatureMeasurement> measurements = patientCard.getTemperatureMeasurements();
+        Collections.sort(measurements);
+        List<String> xVals = newArrayList();
+        int i = 0;
+        for (TemperatureMeasurement temp : measurements) {
+            Entry entry = new Entry((float) temp.getDegreeCelcius(), i++);
+            entries.add(entry);
+            xVals.add(DATE_FORMAT.format(temp.getMeasurementTime()));
+        }
+
+        LineDataSet set = new LineDataSet(entries, "Temperatures");
+        set.setAxisDependency(YAxis.AxisDependency.LEFT);
+        set.setCircleColors(new int[]{R.color.red});
+        LineChart chart = (LineChart) findViewById(R.id.chart);
+
+        List<LineDataSet> sets = newArrayList(set);
+        LineData data = new LineData(xVals, sets);
+        chart.setData(data);
+        chart.invalidate();
     }
 }
