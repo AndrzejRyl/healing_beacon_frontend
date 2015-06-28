@@ -62,6 +62,10 @@
             android:name=".LaboratoryTestsResultsActivity"
             android:label="@string/title_activity_laboratory_tests_results" >
         </activity>
+        <activity
+            android:name=".HistoryActivity"
+            android:label="@string/title_activity_history" >
+        </activity>
     </application>
 
 </manifest>
