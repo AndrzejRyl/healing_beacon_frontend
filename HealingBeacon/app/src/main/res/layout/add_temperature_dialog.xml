@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:id="@+id/">
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/add_dialog_info"
@@ -16,8 +15,7 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textSize="30sp"
-            android:text="TEMPERATURE"
-            android:id="@+id/" />
+            android:text="TEMPERATURE"/>
 
     </LinearLayout>
 
