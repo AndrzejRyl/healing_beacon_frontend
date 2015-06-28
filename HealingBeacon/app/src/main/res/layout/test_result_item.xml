@@ -5,49 +5,27 @@
     android:background="#ffffff"
     android:paddingBottom="10sp"
     android:paddingTop="10sp"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    android:layout_margin="5px"
+    android:weightSum="1">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="1">
-
-        <TextView
-            android:id="@+id/testType"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_marginBottom="2sp"
-            android:layout_weight="0.7"
-            android:gravity="center"
-            android:text="Prozac"
-            android:textSize="25sp" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.3"
-            android:orientation="vertical"
-            android:paddingRight="5sp"
-            android:weightSum="1">
-
-            <TextView
-                android:id="@+id/testTimeTaken"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="0.5"
-                android:gravity="end"
-                android:text="Date" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
+    <TextView
+        android:id="@+id/testTimeTaken"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.3"
+        android:text="12-01-2015"
+        android:gravity="center"
+        android:textSize="10dp" />
 
     <TextView
         android:id="@+id/testResult"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Test"
-        android:paddingLeft="10sp"/>
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:text="Smells bad, need more tests"
+        android:paddingLeft="10sp"
+        android:layout_weight="0.7"
+        android:textSize="15dp" />
+
 
 </LinearLayout>
